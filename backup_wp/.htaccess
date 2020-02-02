@@ -1,0 +1,19 @@
+
+# BEGIN AZMANAGE APP
+AddType application/x-fastcgi-php-5.3  php 
+# END AZMANAGE APP
+
+
+# BEGIN WordPress
+
+# END WordPress
+
+
+
+# BEGIN WordPress
+
+# END WordPress
+# BEGIN AZMANAGE APP
+AddType application/x-fastcgi-php-5.3  php 
+# END AZMANAGE APP
+

@@ -1,0 +1,1 @@
+<footer id="footer"><a href="<?php echo base_url() ?>"><?php echo $config_name ?></a> &copy; <?php echo date('Y') ?> All Rights Reserved.<br /></footer></div>
