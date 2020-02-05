@@ -30,6 +30,9 @@ class Home extends CI_Controller {
     	//Data
         $data = $this->data;
 
+        // echo '<pre>';
+        // print_r($data);exit;
+
         $data['slideshow'] = $this->Model_crud->select_where('home_slideshow', array('status'=>1));
         $data['intro'] = $this->Model_crud->select('home_intro');
         $data['service_intro'] = $this->Model_crud->select('home_service_text');

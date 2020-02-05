@@ -1,33 +1,58 @@
-<!--[if IE]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-<div class="MainMenu">
-   <div class="container">
-      <div class="header">
-         <div class="desktop-menu">
-            <ul class="nav nav-pills pull-right menu">
-               <?php if($menu) {
-                  foreach ($menu as $row) {
-                     ?>
-                     <li class="<?php echo ( ($this->uri->segment(1)=='' && $row['slug']=='home') || $this->uri->segment(1)==$row['slug'])? 'active':'' ?>"><a href="<?php echo base_url($row['slug']) ?>"><?php echo $row['name'] ?></a></li>
-                     <?php
-                  }
-               } ?>
-            </ul>
-         </div>
-         <a href="#" class="togglenav"><i class="glyphicon glyphicon-tasks"></i></a>
-         <div class="mobile-menu">
-            <ul class="nav nav-pills menu">
-               <?php if($menu) {
-                  foreach ($menu as $row) {
-                     ?>
-                     <li class="<?php echo ( ($this->uri->segment(1)=='' && $row['slug']=='home') || $this->uri->segment(1)==$row['slug'])? 'active':'' ?>"><a href="<?php echo base_url($row['slug']) ?>"><?php echo $row['name'] ?></a></li>
-                     <?php
-                  }
-               } ?>
-            </ul>
-         </div>
-         <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('assets/images/'.$logo) ?>" alt="" class="logo"></a>
-      </div>
-   </div>
+<div id="header">
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light p-md-0 px-0">
+            <div class="row">
+                <div class="col-md-2 col-12">
+                    <div class="h-100 d-none d-sm-block">
+                    <a class="navbar-brand" href="#"><img src="<?php echo base_url('assets/images/logo.png') ?>" alt="" class="img-fluid"></a>
+                    </div>                
+                    <div class="top-mobile d-block d-sm-none">
+                    <a class="navbar-brand w-100" href="#"><img src="<?php echo base_url('assets/images/logo.png') ?>" alt="" class="img-fluid w-50"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    </div>
+                    
+                </div>
+                <div class="col-md-7 pr-md-0">
+                    <div class="collapse navbar-collapse content-menu" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                        <a class="nav-link" href="<?php echo base_url() ?>">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('about') ?>">About</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('service') ?>">Service</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('mom-academy') ?>">MOM Academy</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('mom-project') ?>">MoM Project</a>
+                        </li>
+                        <li class="d-block d-sm-none nav-item"><a data-toggle="modal" data-target="#loginPopUp" class="nav-link text-capitalize">sign in</a></li>
+                        <li class="d-block d-sm-none nav-item"><a data-toggle="modal" data-target="#registPopUp" class="nav-link text-capitalize">join</a></li class="d-block d-sm-none nav-item">
+                    </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 d-none d-sm-block">
+                    <div class="act-right d-flex mt-3">
+                    <ul class="w-100 d-flex justify-content-between">
+                        <?php
+                            if(!empty($this->session->userdata('member_logged_in'))){
+                                echo '<li><a class="btn bg-white">Hi, '.$this->session->userdata('member_data').'</a></li>';
+                                echo '<li><a class="btn bg-white" href="'.base_url('signout').'">Signout</a></li>';
+                            }else{
+                                echo '<li><a data-toggle="modal" data-target="#loginPopUp" class="btn bg-white">sign in</a></li>
+                                     <li><a data-toggle="modal" data-target="#registPopUp" class="btn bg-orange">join</a></li>';
+                            }
+                        ?>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
 </div>

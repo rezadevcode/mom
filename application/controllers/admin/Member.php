@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Our_team extends CI_Controller {
+class Member extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -18,7 +18,7 @@ class Our_team extends CI_Controller {
 
         //Data
         $this->data = array(
-            'title' => 'Our team',
+            'title' => 'Member',
             'config_name' => $config[0]['value'],
             'logo' => $config[1]['value'],
             'favicon' => $config[2]['value']
@@ -29,9 +29,9 @@ class Our_team extends CI_Controller {
         //Data
         $data = $this->data;
 
-        $data['results'] = $this->Model_crud->select_where('our_team', array('status'=>1));
+        $data['results'] = $this->Model_crud->select_where('member', array('status'=>1));
         
-        $data['load_view'] = 'admin/about/team/team_list';
+        $data['load_view'] = 'admin/member/member_list';
         $this->load->view('admin/template/backend', $data);
     }
 
@@ -39,18 +39,21 @@ class Our_team extends CI_Controller {
         //Data
         $data = $this->data;
 
-        $data['load_view'] = 'admin/about/team/team_add';
+        $data['load_view'] = 'admin/member/member_add';
         $this->load->view('admin/template/backend', $data);
     }
 
     public function save() {
         // echo '<pre>';
         // print_r($_POST);exit;
+        $name = $this->input->post('name');
+        $email = $this->input->post('email');
+        $ig_account = $this->input->post('ig_account');
+        $fb_account = $this->input->post('fb_account');
+        $comunity = $this->input->post('comunity');
+        $type = $this->input->post('type');
         $image = $this->input->post('image');
-        $title = $this->input->post('title');
-        $description = $this->input->post('description');
-        $instagram = $this->input->post('instagram');
-        $whatsapp = $this->input->post('whatsapp');
+        $password = $this->input->post('password');
         $status = $this->input->post('status');
 
         //message
@@ -61,29 +64,37 @@ class Our_team extends CI_Controller {
         }
 
         if ($error) {
-            redirect('admin/about/our_team/add');
+            redirect('admin/member/add');
         }
+
+        $password = crypt($password, $this->config->item('encryption_key'));
     
         $data_insert = array(
-            "title" => $title,
-            "desc" => $description,
+            "name" => $name,
+            "email" => $email,
+            "ig_account" => $ig_account,
+            "fb_account" => $fb_account,
+            "comunity" => $comunity,
+            'member_type' => $type,
+            "password" => $password,
             "image" => $image,
-            'ig_link' => $instagram,
-            "wa_link" => $whatsapp,
             "status" => $status
         );
 
-        $slideshow_id = $this->Model_crud->insert('our_team', $data_insert);
+        // echo '<pre>';
+        // print_r($data_insert);exit;
 
-        @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/team/'.$image);
+        $slideshow_id = $this->Model_crud->insert('member', $data_insert);
+
+        @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/member/'.$image);
         
         if ($slideshow_id) {
-            $this->session->set_userdata('slideshow_success', 'Success: You have modified slideshow!');
+            $this->session->set_userdata('slideshow_success', 'Success: You have modified member!');
         } else {
             $this->session->set_userdata('slideshow_error', 'Error: Please try again!');
         }
 
-        redirect('admin/about/our_team');
+        redirect('admin/member');
     }
 
     public function edit($id=0) {
@@ -164,5 +175,35 @@ class Our_team extends CI_Controller {
         }
 
         redirect('admin/about/our_team');
+    }
+
+    public function service()
+    {
+        //Data
+        $data = $this->data;
+
+        $data['title']   = 'Service';
+        $data['results'] = $this->Model_crud->select_query('SELECT a.*, b.name, b.comunity, b.image FROM  service_member a 
+        left join member b on a.member_id  = b.member_id GROUP  BY  a.id ');
+
+        // $image = [];
+        // foreach ($data['results'] as $key => $row) {
+        //     $image = $this->Model_crud->select_where('member_service_img',['member_id' => $row['member_id']]);
+        //     $data['results'][$key]['image'] = $image[0]['image'];
+        // }
+        // $data['results'][0][] = $image[0]['image'];
+        // echo '<pre>';
+        // print_r($data['results']); exit;
+        
+        $data['load_view'] = 'admin/service/service_list';
+        $this->load->view('admin/template/backend', $data);
+    }
+
+    public function service_add()
+    {
+        $data = $this->data;
+
+        $data['load_view'] = 'admin/service/service_add';
+        $this->load->view('admin/template/backend', $data);
     }
 }

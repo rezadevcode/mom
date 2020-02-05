@@ -58,8 +58,14 @@ $route['admin'] = 'admin/login';
 
 // FRONT
 $route['home'] = 'home/index';
-$route['project'] = 'project/index';
-$route['client'] = 'client/index';
+// $route['project'] = 'project/index';
+// $route['client'] = 'client/index';
 $route['about'] = 'about/index';
-$route['contact'] = 'contact/index';
-$route['(:any)'] = 'custom/index/$1';
+$route['service'] = 'service/index';
+$route['mom-academy'] = 'mom_academy/index';
+$route['mom-project'] = 'mom_project/index';
+$route['signup'] = 'login_member/signup';
+$route['signin'] = 'login_member/signin';
+$route['signout'] = 'login_member/logout';
+// $route['contact'] = 'contact/index';
+// $route['(:any)'] = 'custom/index/$1';

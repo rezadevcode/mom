@@ -34,6 +34,12 @@
                 <li><a href="<?php echo base_url('admin/about/people') ?>">People</a></li>
             </ul>
         </li>
+        <li id="member"><a class="parent"><i class="fa fa-user fa-fw"></i> <span>Member</span></a>
+            <ul>
+                <li><a href="<?php echo base_url('admin/member') ?>">Member data</a></li>
+                <li><a href="<?php echo base_url('admin/member/service') ?>">service</a></li>
+            </ul>
+        </li>
         <li id="contact"><a class="parent"><i class="fa fa-phone fa-fw"></i> <span>Contact</span></a>
             <ul>
                 <li><a href="<?php echo base_url('admin/contact/intro') ?>">Contact</a></li>
@@ -41,7 +47,6 @@
             </ul>
         </li>
         <li id="menu"><a href="<?php echo base_url('admin/menu') ?>"><i class="fa fa-list fa-fw"></i> <span>Menu</span></a></li>
-        <li id="user"><a href="<?php echo base_url('admin/user') ?>"><i class="fa fa-user fa-fw"></i> <span>User</span></a></li>
         <li id="setting"><a href="<?php echo base_url('admin/setting') ?>"><i class="fa fa-cog fa-fw"></i> <span>Setting</span></a></li>
     </ul>
 </nav>
