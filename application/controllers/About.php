@@ -29,8 +29,8 @@ class About extends CI_Controller {
     	//Data
         $data = $this->data;
 
-        $data['about_intro'] = $this->Model_crud->select('about_intro');
-        $data['about_people'] = $this->Model_crud->select('about_people');
+        // $data['about_intro'] = $this->Model_crud->select('about_intro');
+        // $data['about_people'] = $this->Model_crud->select('about_people');
 
         $data['load_view'] = 'view_about';
         $this->load->view('template/front', $data);
