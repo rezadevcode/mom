@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/styles/main.css') ?>">
   <script src="<?php echo base_url('assets/scripts/modernizr.js') ?>"></script>
   <style>
-    .notif-success p {
+    .notif-error p {
       font-size: 12px;
       margin: 0;
       color: red;

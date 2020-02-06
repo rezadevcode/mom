@@ -83,7 +83,7 @@
                                     }
                                 } else {
                                     echo '<tr>';
-                                    echo '<td class="text-center" colspan="5">No Results!</td>';
+                                    echo '<td class="text-center" colspan="9">No Results!</td>';
                                     echo '</tr>';
                                 }
                                 ?>

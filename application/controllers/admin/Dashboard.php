@@ -17,7 +17,7 @@ class Dashboard extends CI_Controller {
 
         //Data
         $this->data = array(
-            'title' => 'Store',
+            'title' => 'Dashboard',
             'config_name' => $config[0]['value'],
             'logo' => $config[1]['value'],
             'favicon' => $config[2]['value']

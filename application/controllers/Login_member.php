@@ -80,7 +80,7 @@ class Login_member extends CI_Controller {
                     //message
                     $json = array(
                         'status' => 'error',
-                        'msg' => 'no match email and password'
+                        'msg' => '<p>no match email and password</p>'
                     );
                     header("Content-type:application/json");
                     echo json_encode($json,JSON_PRETTY_PRINT);
@@ -90,7 +90,7 @@ class Login_member extends CI_Controller {
                 //message
                 $json = array(
                     'status' => 'error',
-                    'msg' => 'no match email and password'
+                    'msg' => '<p>no match email and password</p>'
                 );
                 header("Content-type:application/json");
                 echo json_encode($json,JSON_PRETTY_PRINT);
@@ -107,13 +107,17 @@ class Login_member extends CI_Controller {
 		$this->load->library('form_validation');
         
         //validation
-        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[5]');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[member.email]');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|matches[passconf]');
-        $this->form_validation->set_rules('passconf', 'Confirm Password', 'trim|required');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[5]',
+            array('required' => 'nama wajib di isi'));
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[member.email]',
+        array('required' => 'email wajib di isi'));
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|matches[passconf]',
+        array('matches' => 'password confirmation tidak cocok'));
+        $this->form_validation->set_rules('passconf', 'Confirm Password', 'trim');
         if (empty($_FILES['image']['name']))
         {
-            $this->form_validation->set_rules('image', 'Image', 'required');
+            $this->form_validation->set_rules('image', 'Image', 'required',
+            array('required' => 'image wajib di isi'));
         }
 		
         if ($this->form_validation->run() == FALSE) {
@@ -129,7 +133,7 @@ class Login_member extends CI_Controller {
 
             // Config Upload
             $config['upload_path'] = './assets/tmp';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|JPG';
             $config['max_size'] = 1024 * 40;
             $config['encrypt_name'] = FALSE;
             $config['file_name'] = time() . '_' . $_FILES[$file_element_name]['name'];
@@ -163,6 +167,7 @@ class Login_member extends CI_Controller {
                     'comunity' => strtolower($community),
                     'name' => $name,
                     'image' => $image,
+                    'status' => 1,
                     'member_type' => $type,
                     'ig_account' => $ig_account,
                     'fb_account' => $fb_account
@@ -171,8 +176,10 @@ class Login_member extends CI_Controller {
                 $query = $this->Model_crud->insert('member', $param);
 
                 if ($query) {
-                    // $this->session->set_userdata('member_data', $name); //set session
-                    // $this->session->set_userdata('member_logged_in', true); //set session
+                    $this->session->set_userdata('member_data', $name); //set session
+                    $this->session->set_userdata('member_logged_in', true); //set session
+
+                    @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/member/'.$image);
                     $json = array(
                         'status' => 'ok',
                         'msg' => 'insert success',

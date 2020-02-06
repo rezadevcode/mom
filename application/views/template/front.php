@@ -24,17 +24,16 @@
                         <div class="form-group">
                             <input type="email" name="email" class="form-control" placeholder="Alamat email">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-4">
                             <input id="password-field" type="password" class="form-control" name="password" value="" placeholder="Pasword">
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
+                        <div class="notif-success" style="text-align: center"></div>
+                        <div class="notif-error" style="text-align: center;margin-top: -10px;margin-bottom: 10px;"></div>
                         <div class="form-group">
                             <!-- <a href="#" class="btn btn-submit text-uppercase d-block rounded bg-orange text-white">login</a> -->
-                            <button class="btn btn-submit text-uppercase d-block rounded bg-orange text-white">login</button>
+                            <button class="btn btn-submit text-uppercase d-block rounded bg-orange text-white" style="width: 100%">login</button>
                             <!-- <a href="#" class="btn btn-submit text-uppercase d-block rounded bg-orange text-white mt-3"><i class="fab fa-google"></i> login via google </a> -->
-                        </div>
-                        <div class="notif-success" style="text-align: center;margin: 10px">
-                            <!-- <span class="badge badge-success">success</span> -->
                         </div>
                     </form>
                 </div>
@@ -87,13 +86,12 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="Confirm Password" name="passconf">
                                         </div>
-                                        <div class="form-group custom-file">
+                                        <div class="form-group custom-file mb-3">
                                             <input type="file" class="custom-file-input" id="customFile" name="image">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
-                                        <div class="notif-success" style="text-align: center;margin: 10px">
-                                            <!-- <span class="badge badge-success">success</span> -->
-                                        </div>
+                                        <div class="notif-success" style="text-align: center"></div>
+                                        <div class="notif-error" style="text-align: center;margin-top: -10px;margin-bottom: 10px;"></div>
                                         <div class="form-group">
                                             <button class="btn text-uppercase bg-orange text-white w-100">submit</button>
                                         </div>  
@@ -132,13 +130,12 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="Confirm Password" name="passconf">
                                         </div>
-                                        <div class="form-group custom-file mb-5">
+                                        <div class="form-group custom-file mb-3">
                                             <input type="file" class="custom-file-input" id="customFile" name="image">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
-                                        <div class="notif-success" style="text-align: center;margin: 10px">
-                                            <!-- <span class="badge badge-success">success</span> -->
-                                        </div>
+                                        <div class="notif-success" style="text-align: center"></div>
+                                        <div class="notif-error" style="text-align: center;margin-top: -10px;margin-bottom: 10px;"></div>
                                         <div class="form-group">
                                             <button class="btn text-uppercase bg-orange text-white w-100">submit</button>
                                         </div>  
@@ -177,13 +174,12 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="Confirm Password" name="passconf">
                                         </div>
-                                        <div class="form-group custom-file mb-5">
+                                        <div class="form-group custom-file mb-3">
                                             <input type="file" class="custom-file-input" id="customFile" name="image">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
-                                        <div class="notif-success" style="text-align: center;margin: 10px">
-                                            <!-- <span class="badge badge-success">success</span> -->
-                                        </div>
+                                        <div class="notif-success" style="text-align: center"></div>
+                                        <div class="notif-error" style="text-align: center;margin-top: -10px;margin-bottom: 10px;"></div>
                                         <div class="form-group">
                                             <button class="btn text-uppercase bg-orange text-white w-100">submit</button>
                                         </div>  
@@ -229,6 +225,7 @@
             // posting.done(function( data ) {
             //     console.log($data);
             // });
+            $form.find('.notif-error').html('');
 
             jQuery.ajax({
                 url: url,
@@ -241,10 +238,11 @@
                 success: function(data){
                     console.log(data['status']);
                     if (data['status'] == 'ok') {
+                        $form[0].reset(); //reseting form
                         var base_url = window.location.origin;
-                        var html_ = '<span class="badge badge-success">success</span>';
+                        var html_ = '<h4 class="badge badge-success" style="padding: 10px 30px;">Registration success</h4>';
                         setTimeout(function() { 
-                            $('.notif-success').html(html_);
+                            $form.find('.notif-success').html(html_);
                         }, 800)
                         setTimeout(function() { 
                             window.location.replace(base_url);
@@ -252,7 +250,7 @@
                     }else{
                         var html_ = data['msg'];
                         setTimeout(function() { 
-                            $('.notif-success').html(html_);
+                            $form.find('.notif-error').html(html_);
                         }, 800)
                     }
                 }
