@@ -29,17 +29,24 @@ class Home extends CI_Controller {
 
     	//Data
         $data = $this->data;
-        
-        // echo '<pre>';
-        // print_r($data);exit;
 
-        // $data['slideshow'] = $this->Model_crud->select_where('home_slideshow', array('status'=>1));
-        // $data['intro'] = $this->Model_crud->select('home_intro');
-        // $data['service_intro'] = $this->Model_crud->select('home_service_text');
-        // $data['service_list'] = $this->Model_crud->select_where('home_service', array('status'=>1));
-        // $data['project'] = $this->Model_crud->select_query("SELECT p.*, c.name AS category_name, c.slug AS category_slug FROM project p LEFT JOIN category c ON p.category_id = c.category_id ORDER BY p.created_at DESC limit 8");
-        // $data['client_list'] = $this->Model_crud->select_order('client_list', 'name', 'asc');
+        $banner_result = $this->Model_crud->select_where('banner',['deployment' => 'home']);
+        $sponsor_result = $this->Model_crud->select_where('sponsor',['status' => 1, 'type' => 'sponsor']);
+        $content_result = $this->Model_crud->select_where('content_element',['placement' => 'home']);
+        $slideshow_result = $this->Model_crud->select_where('slideshow',['status' => 1]);
+        $service_result = $this->Model_crud->select_where('home_service',['status' => 1]);
+        $data_content = [];
         
+        foreach ($content_result as $value) {
+            $data_content[$value['id']] = $value;
+        }
+        // echo '<pre>';
+        // print_r($data_content);exit;
+        $data['content'] = $data_content;
+        $data['sponsore'] = $sponsor_result;
+        $data['slideshow'] = $slideshow_result;
+        $data['banner'] = $banner_result[0];
+        $data['service'] = $service_result;
         $data['load_view'] = 'view_home';
         $this->load->view('template/front', $data);
     }

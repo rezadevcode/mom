@@ -42,7 +42,7 @@
                                         Title
                                     </td>
                                     <td class="text-left">                    
-                                        Description
+                                        Position
                                     </td>
                                     <td class="text-left">                    
                                         Status
@@ -65,7 +65,7 @@
                                             <td class="text-center"><input type="checkbox" name="selected[]" value="<?php echo $row['id'] ?>" /></td>
                                             <td class="text-center"><img src="<?php echo base_url('assets/images/team/' . $row['image']) ?>" alt="" class="img-thumbnail" width="40" height="40" /></td>
                                             <td class="text-left"><?php echo $row['title'] ?></td>
-                                            <td class="text-left"><?php echo strip_tags($row['desc']) ?></td>
+                                            <td class="text-left"><?php echo strip_tags($row['position']) ?></td>
                                             <td class="text-left"><?php echo $row['status'] == 1 ? 'enabled' : 'disabled' ?></td>
                                             <td class="text-left"><?php echo $row['added'] ?></td>
                                             <td class="text-right"><a class="btn btn-primary" title="" data-toggle="tooltip" href="<?php echo base_url('admin/about/our_team/edit/' . $row['id']) ?>" data-original-title="Edit"><i class="fa fa-pencil"></i></a></td>

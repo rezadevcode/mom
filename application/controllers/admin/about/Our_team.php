@@ -48,6 +48,7 @@ class Our_team extends CI_Controller {
         // print_r($_POST);exit;
         $image = $this->input->post('image');
         $title = $this->input->post('title');
+        $position = $this->input->post('position');
         $description = $this->input->post('description');
         $instagram = $this->input->post('instagram');
         $whatsapp = $this->input->post('whatsapp');
@@ -66,6 +67,7 @@ class Our_team extends CI_Controller {
     
         $data_insert = array(
             "title" => $title,
+            "position" => $position,
             "desc" => $description,
             "image" => $image,
             'ig_link' => $instagram,
@@ -105,6 +107,7 @@ class Our_team extends CI_Controller {
         
         $image = $this->input->post('image');
         $title = $this->input->post('title');
+        $position = $this->input->post('position');
         $description = $this->input->post('description');
         $instagram = $this->input->post('instagram');
         $whatsapp = $this->input->post('whatsapp');
@@ -125,6 +128,7 @@ class Our_team extends CI_Controller {
         //Data Update
         $data_update = array(
             "title" => $title,
+            "position" => $position,
             "desc" => $description,
             "image" => $image,
             'ig_link' => $instagram,
@@ -136,7 +140,7 @@ class Our_team extends CI_Controller {
         //Notification
         $ex_upd = $this->Model_crud->update('our_team', $data_update, array("id"=>$id));
 
-        @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/slideshow/'.$image);
+        @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/team/'.$image);
         
         if ($ex_upd) {
             $this->session->set_userdata('slideshow_success', 'Success: You have modified slideshow!');

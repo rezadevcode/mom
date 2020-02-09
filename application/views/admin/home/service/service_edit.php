@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="pull-right">
                 <button class="btn btn-primary" title="" data-toggle="tooltip" form="form" type="submit" data-original-title="Save"><i class="fa fa-save"></i></button>
-                <a class="btn btn-default" title="" data-toggle="tooltip" href="<?php echo base_url('admin/home/service') ?>" data-original-title="Cancel"><i class="fa fa-reply"></i></a></div>
+                <a class="btn btn-default" title="" data-toggle="tooltip" href="<?php echo base_url('admin/home/slideshow') ?>" data-original-title="Cancel"><i class="fa fa-reply"></i></a></div>
             <h1>Service</h1>
             <ul class="breadcrumb">
                 <li><a href="<?php echo base_url('admin/dashboard') ?>">Home</a></li>
@@ -14,12 +14,27 @@
     <div class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Service</h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Add service</h3>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" id="form" enctype="multipart/form-data" method="post" action="<?php echo base_url('admin/home/service/update') ?>">
-                    <input type="hidden" name="id" value="<?php echo $result[0]['home_service_id'] ?>">
-                    
+                <input type="hidden" name="id" placeholder="Title" class="form-control" value="<?php echo $result[0]['id'] ?>">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Title</label>
+                        <div class="col-sm-10">
+                            <input name="title" placeholder="Title" class="form-control" value="<?php echo $result[0]['title'] ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-10">
+                            <textarea name="description" placeholder="Text Left" id="input-text-left" class="input-text-area">
+                                <?php echo $result[0]['desc'] ?>
+                            </textarea>
+                        </div>
+                    </div>
+
                     <div class="form-group required <?php echo ($this->session->userdata('error_image')) ? 'has-error' : ''; ?>">
                         <label class="col-sm-2 control-label" for="input-image">Image</label>
                         <div class="col-sm-10">
@@ -27,7 +42,7 @@
                                 <div id="container-upload-1" class="upload-holder">
                                     <?php if($result[0]['image'] != '') { ?>
                                         <div class="remove"><a href="javascript:void(0);" onclick="removeFile('upload-1');" class="thumbnail-close">&times;</a></div>
-                                        <figure><div><img src="<?php echo base_url('assets/images/service/'.$result[0]['image']) ?>" alt=""></div></figure>
+                                        <figure><div><img src="<?php echo base_url('assets/images/content/'.$result[0]['image']) ?>" alt=""></div></figure>
                                         <input name="image" value="<?php echo $result[0]['image'] ?>" type="hidden">
                                     <?php } else { ?>
                                         <span>
@@ -43,18 +58,25 @@
                             <?php } ?>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Title</label>
+                        <label class="col-sm-2 control-label" for="input-status">Placement</label>
                         <div class="col-sm-10">
-                            <input type="text" name="title" placeholder="Title" id="input-title" class="form-control" value="<?php echo $result[0]['title'] ?>" />
+                            <select name="placement" id="input-status" class="form-control">
+                            <option value="" >--select--</option>
+                                <option value="home" <?php echo ($result[0]['placement']== 'home')? 'selected':'' ?> >Home</option>
+                                <option value="about" <?php echo ($result[0]['placement']== 'about')? 'selected':'' ?> >About</option>
+                                <option value="mom academy" <?php echo ($result[0]['placement']== 'mom academy')? 'selected':'' ?> >Mom academy</option>
+                                <option value="mom project" <?php echo ($result[0]['placement']== 'mom project')? 'selected':'' ?> >Mom project</option>
+                                <option value="service" <?php echo ($result[0]['placement']== 'service')? 'selected':'' ?> >Service</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Text</label>
+                        <label class="col-sm-2 control-label">Link</label>
                         <div class="col-sm-10">
-                            <textarea name="text" placeholder="Text" id="input-text" class="input-text-area"><?php echo $result[0]['text'] ?></textarea>
+                            <input name="link" placeholder="Link" class="form-control" value="<?php echo $result[0]['link'] ?>">
                         </div>
                     </div>
                     
@@ -73,7 +95,7 @@
     </div>
 </div>
 
-<script type="text/javascript"><!--
+<script type="text/javascript">
     
     tinymce.init({
         selector: ".input-text-area", theme: "modern", height: 300,

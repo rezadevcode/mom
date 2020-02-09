@@ -7,7 +7,7 @@
             <h1>Slideshow</h1>
             <ul class="breadcrumb">
                 <li><a href="<?php echo base_url('admin/dashboard') ?>">Home</a></li>
-                <li><a href="<?php echo base_url('admin/home/video') ?>">Video</a></li>
+                <li><a href="<?php echo base_url('admin/about/video') ?>">Video</a></li>
             </ul>
         </div>
     </div>
@@ -17,7 +17,7 @@
                 <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Slideshow</h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" id="form" enctype="multipart/form-data" method="post" action="<?php echo base_url('admin/home/video/update') ?>">
+                <form class="form-horizontal" id="form" enctype="multipart/form-data" method="post" action="<?php echo base_url('admin/about/video/update') ?>">
                     <input type="hidden" name="id" value="<?php echo $result[0]['video_id'] ?>">
                     
                     <div class="form-group">

@@ -6,25 +6,38 @@
     </div>
     <ul id="menu">
         <li id="dashboard"><a href="<?php echo base_url('admin/dashboard') ?>"><i class="fa fa-dashboard fa-fw"></i> <span>Dashboard</span></a></li>
-        
-        <li id="menu"><a href="<?php echo base_url('admin/home/video') ?>"><i class="fa fa-list fa-fw"></i> <span>Video</span></a></li>
-        <li id="menu"><a href="<?php echo base_url('admin/home/slideshow') ?>"><i class="fa fa-list fa-fw"></i> <span>Slideshow</span></a></li>
-        <li id="menu"><a href="<?php echo base_url('admin/home/content_element') ?>"><i class="fa fa-list fa-fw"></i> <span>Content element</span></a></li>
-        <li id="menu"><a href="<?php echo base_url('admin/about/our_team') ?>"><i class="fa fa-list fa-fw"></i> <span>Our team</span></a></li>
+        <li id="home"><a class="parent"><i class="fa fa-home fa-fw"></i> <span>Home</span></a>
+            <ul>
+                <li><a href="<?php echo base_url('admin/home/sponsor') ?>">Sponsore</a></li>
+                <li><a href="<?php echo base_url('admin/home/slideshow') ?>">Slideshow</a></li>
+                <li><a href="<?php echo base_url('admin/home/service') ?>">Our Service</a></li>
+            </ul>
+        </li>
+        <li id="home"><a class="parent"><i class="fa fa-list fa-fw"></i> <span>About</span></a>
+            <ul>
+                <li><a href="<?php echo base_url('admin/about/video') ?>">Video</a></li>
+                <li><a href="<?php echo base_url('admin/about/our_team') ?>">Our team</a></li>
+            </ul>
+        </li>
+        <li id="home"><a class="parent"><i class="fa fa-list fa-fw"></i> <span>Mom Academy</span></a>
+            <ul>
+                <li><a href="<?php echo base_url('admin/program') ?>">Program</a></li>
+            </ul>
+        </li>
+        <li id="home"><a class="parent"><i class="fa fa-list fa-fw"></i> <span>Mom Project</span></a>
+            <ul>
+                <li><a href="<?php echo base_url('admin/project') ?>">Project</a></li>
+            </ul>
+        </li>
+        <li id="menu"><a href="<?php echo base_url('admin/home/banner') ?>"><i class="fa fa-list fa-fw"></i> <span>Banner</span></a></li>
+        <li id="menu"><a href="<?php echo base_url('admin/content_element') ?>"><i class="fa fa-list fa-fw"></i> <span>Content element</span></a></li>        
         <li id="member"><a class="parent"><i class="fa fa-user fa-fw"></i> <span>Member</span></a>
             <ul>
                 <li><a href="<?php echo base_url('admin/member') ?>">Member data</a></li>
-                <li><a href="<?php echo base_url('admin/member/service') ?>">service</a></li>
+                <!-- <li><a href="<?php echo base_url('admin/member/service') ?>">service</a></li> -->
             </ul>
         </li>
-        <!-- <li id="home"><a class="parent"><i class="fa fa-home fa-fw"></i> <span>Home</span></a>
-            <ul>
-                <li><a href="<?php echo base_url('admin/home/video') ?>">Video</a></li>
-                <li><a href="<?php echo base_url('admin/home/slideshow') ?>">Slideshow</a></li>
-                <li><a href="<?php echo base_url('admin/home/content_element') ?>">Content element</a></li>
-                <li><a href="<?php echo base_url('admin/home/service') ?>">Service</a></li>
-            </ul>
-        </li>
+        <!--
         <li id="project"><a class="parent"><i class="fa fa-briefcase fa-fw"></i> <span>Project</span></a>
             <ul>
                 <li><a href="<?php echo base_url('admin/project/slideshow') ?>">Slideshow</a></li>

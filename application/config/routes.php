@@ -55,6 +55,8 @@ $route['translate_uri_dashes'] = TRUE;
 
 // ADMIN
 $route['admin'] = 'admin/login';
+$route['member'] = 'member/Login_member';
+// $route['member/edit_profil'] = 'member/profile/edit_profile';
 
 // FRONT
 $route['home'] = 'home/index';
@@ -64,8 +66,8 @@ $route['about'] = 'about/index';
 $route['service'] = 'service/index';
 $route['mom-academy'] = 'mom_academy/index';
 $route['mom-project'] = 'mom_project/index';
-$route['signup'] = 'login_member/signup';
-$route['signin'] = 'login_member/signin';
-$route['signout'] = 'login_member/logout';
+$route['signup'] = 'member/login_member/signup';
+$route['signin'] = 'member/login_member/signin';
+$route['signout'] = 'member/login_member/logout';
 // $route['contact'] = 'contact/index';
 // $route['(:any)'] = 'custom/index/$1';

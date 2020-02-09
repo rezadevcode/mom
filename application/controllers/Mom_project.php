@@ -28,10 +28,19 @@ class Mom_project extends CI_Controller {
     public function index() {
     	//Data
         $data = $this->data;
-
-        // $data['about_intro'] = $this->Model_crud->select('about_intro');
-        // $data['about_people'] = $this->Model_crud->select('about_people');
-
+        $project_result = $this->Model_crud->select_where('sponsor',['status' => 1, 'type' => 'project']);
+        $banner_result = $this->Model_crud->select_where('banner',['deployment' => 'mom project']);
+        $content_result = $this->Model_crud->select_where('content_element',['placement' => 'mom project']);
+        $data_content = [];
+        
+        foreach ($content_result as $value) {
+            $data_content[$value['id']] = $value;
+        }
+        // echo '<pre>';
+        // print_r($data_content);exit;
+        $data['content'] = $data_content;
+        $data['project'] = $project_result;
+        $data['banner'] = $banner_result[0];
         $data['load_view'] = 'view_project';
         $this->load->view('template/front', $data);
     }

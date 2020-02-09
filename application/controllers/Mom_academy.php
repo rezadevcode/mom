@@ -28,10 +28,19 @@ class Mom_academy extends CI_Controller {
     public function index() {
     	//Data
         $data = $this->data;
-
-        // $data['about_intro'] = $this->Model_crud->select('about_intro');
-        // $data['about_people'] = $this->Model_crud->select('about_people');
-
+        $banner_result = $this->Model_crud->select_where('banner',['deployment' => 'mom academy']);
+        $program_result = $this->Model_crud->select_where('program',['status' => 1]);
+        $content_result = $this->Model_crud->select_where('content_element',['placement' => 'mom academy']);
+        $data_content = [];
+        
+        foreach ($content_result as $value) {
+            $data_content[$value['id']] = $value;
+        }
+        // echo '<pre>';
+        // print_r($data_content);exit;
+        $data['content'] = $data_content;
+        $data['program'] = $program_result;
+        $data['banner'] = $banner_result[0];
         $data['load_view'] = 'view_academy';
         $this->load->view('template/front', $data);
     }

@@ -2,13 +2,13 @@
     <div class="page-header">
         <div class="container-fluid">
             <div class="pull-right">
-                <a href="<?php echo base_url('admin/home/video/add') ?>" data-toggle="tooltip" title="Add New" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                <a href="<?php echo base_url('admin/about/video/add') ?>" data-toggle="tooltip" title="Add New" class="btn btn-primary"><i class="fa fa-plus"></i></a>
                 <button type="button" data-toggle="tooltip" title="Delete" class="btn btn-danger" onclick="confirm('Are you sure?') ? $('#form-slideshow').submit() : false;"><i class="fa fa-trash-o"></i></button>
             </div>
-            <h1>Slideshow</h1>
+            <h1>Video</h1>
             <ul class="breadcrumb">
                 <li><a href="<?php echo base_url('admin/dashboard') ?>">Home</a></li>
-                <li><a href="<?php echo base_url('admin/home/video') ?>">Slideshow</a></li>
+                <li><a href="<?php echo base_url('admin/home/video') ?>">Video</a></li>
             </ul>
         </div>
     </div>
@@ -26,10 +26,10 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> Slideshow List</h3>
+                <h3 class="panel-title"><i class="fa fa-list"></i> Video List</h3>
             </div>
             <div class="panel-body">
-                <form action="<?php echo base_url('admin/home/video/delete') ?>" method="post" enctype="multipart/form-data" id="form-slideshow">
+                <form action="<?php echo base_url('admin/about/video/delete') ?>" method="post" enctype="multipart/form-data" id="form-slideshow">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
@@ -61,7 +61,7 @@
                                             <td class="text-left"><?php echo $row['title'] ?></td>
                                             <td class="text-left"><?php echo $row['link_video'] ?></td>
                                             <td class="text-left"><?php echo strip_tags($row['description']) ?></td>
-                                            <td class="text-right"><a class="btn btn-primary" title="" data-toggle="tooltip" href="<?php echo base_url('admin/home/video/edit/' . $row['video_id']) ?>" data-original-title="Edit"><i class="fa fa-pencil"></i></a></td>
+                                            <td class="text-right"><a class="btn btn-primary" title="" data-toggle="tooltip" href="<?php echo base_url('admin/about/video/edit/' . $row['video_id']) ?>" data-original-title="Edit"><i class="fa fa-pencil"></i></a></td>
                                         </tr>
 
                                         <?php

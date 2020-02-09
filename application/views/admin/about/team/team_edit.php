@@ -26,6 +26,13 @@
                             <input name="title" placeholder="Title" class="form-control" value="<?php echo $result[0]['title'] ?>">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Position</label>
+                        <div class="col-sm-10">
+                            <input name="position" placeholder="Position" class="form-control" value="<?php echo $result[0]['position'] ?>">
+                        </div>
+                    </div>
                     
                     <div class="form-group required <?php echo ($this->session->userdata('error_image')) ? 'has-error' : ''; ?>">
                         <label class="col-sm-2 control-label" for="input-image">Image</label>
@@ -50,7 +57,6 @@
                             <?php } ?>
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Description</label>
@@ -90,7 +96,7 @@
     </div>
 </div>
 
-<script type="text/javascript"><!--
+<script type="text/javascript">
     
     tinymce.init({
         selector: ".input-text-area", theme: "modern", height: 300,

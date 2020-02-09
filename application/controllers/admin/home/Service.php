@@ -28,8 +28,6 @@ class Service extends CI_Controller {
     public function index() {
         //Data
         $data = $this->data;
-
-        $data['text'] = $this->Model_crud->select('home_service_text');
         $data['list'] = $this->Model_crud->select_where('home_service', array('status'=>1));
         
         $data['load_view'] = 'admin/home/service/service_list';
@@ -45,10 +43,13 @@ class Service extends CI_Controller {
     }
 
     public function save() {
-        $image = $this->input->post('image');
+
+        $description = $this->input->post('description');
         $title = $this->input->post('title');
-        $text = $this->input->post('text');
         $status = $this->input->post('status');
+        $placement = $this->input->post('placement');
+        $image = $this->input->post('image');
+        $link = $this->input->post('link');
 
         //message
         $error = False;
@@ -62,39 +63,22 @@ class Service extends CI_Controller {
         }
     
         $data_insert = array(
-            "image" => $image,
             "title" => $title,
-            "text" => $text,
-            "status" => $status
+            "desc" => $description,
+            "placement" => $placement,
+            "status" => $status,
+            "image" => $image,
+            "link" => $link
         );
 
-        $id = $this->Model_crud->insert('home_service', $data_insert);
+        $slideshow_id = $this->Model_crud->insert('home_service', $data_insert);
 
-        @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/service/'.$image);
+        @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/content/'.$image);
         
-        if ($id) {
-            $this->session->set_userdata('service_success', 'Success: You have modified service!');
+        if ($slideshow_id) {
+            $this->session->set_userdata('slideshow_success', 'Success: You have modified service!');
         } else {
-            $this->session->set_userdata('service_error', 'Error: Please try again!');
-        }
-
-        redirect('admin/home/service');
-    }
-
-    public function update_text() {
-        $text = $this->input->post('text');
-    
-        $data_update = array(
-            "text" => $text,
-            "updated_at" => date('Y-m-d H:i:s')
-        );
-
-        $updated = $this->Model_crud->update('home_service_text', $data_update, array('home_service_text_id'=>1));
-        
-        if ($updated) {
-            $this->session->set_userdata('service_success', 'Success: You have modified service!');
-        } else {
-            $this->session->set_userdata('service_error', 'Error: Please try again!');
+            $this->session->set_userdata('slideshow_error', 'Error: Please try again!');
         }
 
         redirect('admin/home/service');
@@ -105,7 +89,7 @@ class Service extends CI_Controller {
         $data = $this->data;
 
         //Data User
-        $data['result'] = $this->Model_crud->select_where('home_service', array('home_service_id'=>$id));
+        $data['result'] = $this->Model_crud->select_where('home_service', array('id'=>$id));
         
         if(!$data['result']) {
             show_404();
@@ -117,40 +101,44 @@ class Service extends CI_Controller {
 
     public function update() {
         
-        $image = $this->input->post('image');
+        $description = $this->input->post('description');
         $title = $this->input->post('title');
-        $text = $this->input->post('text');
         $status = $this->input->post('status');
+        $placement = $this->input->post('placement');
         $id = $this->input->post('id');
+        $image = $this->input->post('image');
+        $link = $this->input->post('link');
 
+        //message
         $error = False;
         if (strlen(trim($image)) < 1) {
             $this->session->set_userdata('error_image', 'image is required!');
             $error = TRUE;
         }
-        
-        if($error) {
-            redirect('admin/home/service/edit/'.$id);
+
+        if ($error) {
+            redirect('admin/home/service/add');
         }
-        
-        //Data Update
+    
         $data_update = array(
-            "image" => $image,
             "title" => $title,
-            "text" => $text,
+            "desc" => $description,
+            "placement" => $placement,
             "status" => $status,
-            "updated_at" => date('Y-m-d H:i:s')
+            "image" => $image,
+            "link" => $link,
+            "updated" => date('Y-m-d H:i:s')
         );
 
-        //Notification
-        $ex_upd = $this->Model_crud->update('home_service', $data_update, array("home_service_id"=>$id));
+        // print_r($data_update);exit;
+        $updated = $this->Model_crud->update('home_service', $data_update, array('id'=>$id));
 
-        @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/service/'.$image);
+        @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/content/'.$image);
         
-        if ($ex_upd) {
-            $this->session->set_userdata('service_success', 'Success: You have modified slideshow!');
+        if ($updated) {
+            $this->session->set_userdata('mom_success', 'Success: You have modified mom!');
         } else {
-            $this->session->set_userdata('service_error', 'Error: Please try again!');
+            $this->session->set_userdata('mom_error', 'Error: Please try again!');
         }
 
         redirect('admin/home/service');
@@ -162,7 +150,7 @@ class Service extends CI_Controller {
         $ex_del = FALSE;
 
         for ($i = 0; $i < count($checkbox); $i++) {
-            $ex_del = $this->Model_crud->delete('home_service', array("home_service_id" => $checkbox[$i]));
+            $ex_del = $this->Model_crud->delete('home_service', array("id" => $checkbox[$i]));
         }
 
         //notification

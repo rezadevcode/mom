@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="pull-right">
                 <button class="btn btn-primary" title="" data-toggle="tooltip" form="form" type="submit" data-original-title="Save"><i class="fa fa-save"></i></button>
-                <a class="btn btn-default" title="" data-toggle="tooltip" href="<?php echo base_url('admin/home/service') ?>" data-original-title="Cancel"><i class="fa fa-reply"></i></a></div>
+                <a class="btn btn-default" title="" data-toggle="tooltip" href="<?php echo base_url('admin/home/slideshow') ?>" data-original-title="Cancel"><i class="fa fa-reply"></i></a></div>
             <h1>Service</h1>
             <ul class="breadcrumb">
                 <li><a href="<?php echo base_url('admin/dashboard') ?>">Home</a></li>
@@ -14,11 +14,18 @@
     <div class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-pencil"></i> Add Service</h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Add service</h3>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" id="form" enctype="multipart/form-data" method="post" action="<?php echo base_url('admin/home/service/save') ?>">
                     
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Title</label>
+                        <div class="col-sm-10">
+                            <input name="title" placeholder="Title" class="form-control">
+                        </div>
+                    </div>
+
                     <div class="form-group required <?php echo ($this->session->userdata('error_image')) ? 'has-error' : ''; ?>">
                         <label class="col-sm-2 control-label" for="input-image">Image</label>
                         <div class="col-sm-10">
@@ -36,18 +43,32 @@
                             <?php } ?>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Title</label>
+                        <label class="col-sm-2 control-label">Description</label>
                         <div class="col-sm-10">
-                            <input type="text" name="title" placeholder="Title" id="input-title" class="form-control" />
+                            <textarea name="description" placeholder="Text Left" id="input-text-left" class="input-text-area"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Text</label>
+                        <label class="col-sm-2 control-label" for="input-status">Placement</label>
                         <div class="col-sm-10">
-                            <textarea name="text" placeholder="Text" id="input-text" class="input-text-area"></textarea>
+                            <select name="placement" id="input-status" class="form-control">
+                                <option value="" >--select--</option>
+                                <option value="home" >Home</option>
+                                <option value="about">About</option>
+                                <option value="mom academy">Mom academy</option>
+                                <option value="mom project">Mom project</option>
+                                <option value="service">Service</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Link</label>
+                        <div class="col-sm-10">
+                            <input name="link" placeholder="Link" class="form-control">
                         </div>
                     </div>
                     
@@ -66,7 +87,7 @@
     </div>
 </div>
 
-<script type="text/javascript"><!--
+<script type="text/javascript">
     
     tinymce.init({
         selector: ".input-text-area", theme: "modern", height: 300,

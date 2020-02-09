@@ -1,5 +1,8 @@
 <?php
   $uri = $this->uri->segment(1);
+//   echo '<pre>';
+//   print_r($this->session->userdata('member_data'));
+//   exit;
 ?>
 <div id="header">
     <div class="container">
@@ -44,7 +47,7 @@
                     <ul class="w-100 d-flex justify-content-between">
                         <?php
                             if(!empty($this->session->userdata('member_logged_in'))){
-                                echo '<li><a class="btn bg-white">Hi, '.word_limiter($this->session->userdata('member_data'),1).'</a></li>';
+                                echo '<li><a class="btn bg-white" href="'.base_url('member/dashboard').'">Hi, '.word_limiter($this->session->userdata('member_data')['name'],1).'</a></li>';
                                 echo '<li><a class="btn bg-white" href="'.base_url('signout').'">Logout</a></li>';
                             }else{
                                 echo '<li><a data-toggle="modal" data-target="#loginPopUp" class="btn bg-white">sign in</a></li>
