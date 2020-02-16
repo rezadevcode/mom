@@ -102,7 +102,7 @@ class Member extends CI_Controller {
         $data = $this->data;
 
         //Data User
-        $data['result'] = $this->Model_crud->select_where('our_team', array('id'=>$id));
+        $data['result'] = $this->Model_crud->select_where('member', array('id'=>$id));
         
         if(!$data['result']) {
             show_404();
@@ -145,7 +145,7 @@ class Member extends CI_Controller {
         );
 
         //Notification
-        $ex_upd = $this->Model_crud->update('our_team', $data_update, array("id"=>$id));
+        $ex_upd = $this->Model_crud->update('member', $data_update, array("id"=>$id));
 
         @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/slideshow/'.$image);
         
@@ -155,7 +155,7 @@ class Member extends CI_Controller {
             $this->session->set_userdata('slideshow_error', 'Error: Please try again!');
         }
 
-        redirect('admin/about/our_team');
+        redirect('admin/member');
     }
 
     public function delete() {
@@ -164,7 +164,7 @@ class Member extends CI_Controller {
         $ex_del = FALSE;
 
         for ($i = 0; $i < count($checkbox); $i++) {
-            $ex_del = $this->Model_crud->delete('our_team', array("id" => $checkbox[$i]));
+            $ex_del = $this->Model_crud->delete('member', array("id" => $checkbox[$i]));
         }
 
         //notification
@@ -174,7 +174,7 @@ class Member extends CI_Controller {
             $this->session->set_userdata('slideshow_error', 'Error: Please try again!');
         }
 
-        redirect('admin/about/our_team');
+        redirect('admin/member');
     }
 
     public function service()

@@ -17,6 +17,7 @@
             <ul>
                 <li><a href="<?php echo base_url('admin/about/video') ?>">Video</a></li>
                 <li><a href="<?php echo base_url('admin/about/our_team') ?>">Our team</a></li>
+                <li><a href="<?php echo base_url('admin/about/milestone') ?>">Milestone</a></li>
             </ul>
         </li>
         <li id="home"><a class="parent"><i class="fa fa-list fa-fw"></i> <span>Mom Academy</span></a>

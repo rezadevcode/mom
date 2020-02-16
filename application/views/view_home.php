@@ -35,7 +35,7 @@
 			<div class="desc my-3">
 			<?php echo $content[1]['desc'] ?>
 			</div>
-			<div class="more-section"><a href="#" class="hvr-float-shadow">more information <i class="fas fa-angle-right"></i></a></div>
+			<div class="more-section"><a href="<?php echo base_url('about') ?>" class="hvr-float-shadow">more information <i class="fas fa-angle-right"></i></a></div>
 			</div>
 			<div class="column-right col-md-6 wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.3s">
 			<div class="img-column position-relative">
@@ -85,7 +85,7 @@
 			<?php echo $content[3]['desc'] ?>
 
 			</div>
-			<div class="more-section mt-5"><a href="#" class="hvr-float-shadow">more information <i class="fas fa-angle-right"></i></a></div>
+			<div class="more-section mt-5"><a href="<?php echo base_url('mom-academy') ?>" class="hvr-float-shadow">more information <i class="fas fa-angle-right"></i></a></div>
 			</div>
 			<div class="col-md-6 wow fadeInRight pt-md-5 mt-md-5" data-wow-duration="2s" data-wow-delay="0.4s">
 			<div class="slider multiple-items pb-5">
@@ -101,7 +101,7 @@
 		</div>
 		</div>
 	</div>
-	<div class="home-portfolio-wrapper py-5">
+	<!-- <div class="home-portfolio-wrapper py-5">
 		<div class="container py-5">
 		<div class="row">
 			<div class="column-left col-md-6 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.5s">
@@ -130,18 +130,18 @@
 			</div>
 		</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="before-footer-wrapper position-relative">
 		<div class="bg-img"><img src="<?php echo base_url('assets/images/footer-banner.jpg') ?>" alt="" class="img-fluid w-100"></div>
 		<div class="overlay text-center position-absolute w-100 h-100">
-		<div class="tag wow fadeInUp">join with us</div>
-		<div class="title wow fadeInUp">Anda tertarik dengan kami? Gabung sekarang juga.</div>
-		<div class="menu-act my-4">
-			<div class="d-flex justify-content-center">
-			<div class="column wow fadeInLeft"><a data-target="#registPopUp" data-toggle="modal" class="btn bg-white px-4">Register Here</a></div>
-			<div class="column wow fadeInRight"><a href="https://wa.me/6281381532383" class="btn bg-none px-4" target="_blank">Contact Us</a></div>
+			<div class="tag wow fadeInUp">join with us</div>
+			<div class="title wow fadeInUp">Ingin bergabung dengan <br> Mothers on Mission?</div>
+			<div class="menu-act my-4">
+				<div class="d-flex justify-content-center">
+				<div class="column wow fadeInLeft"><a data-target="#registPopUp" data-toggle="modal" class="btn bg-white px-4">Daftar Sekarang</a></div>
+				<div class="column wow fadeInRight d-none"><a href="https://wa.me/6281381532383" class="btn bg-none px-4" target="_blank">Contact Us</a></div>
+				</div>
 			</div>
-		</div>
 		</div>
 	</div>
 </div>

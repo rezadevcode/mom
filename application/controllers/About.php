@@ -29,6 +29,7 @@ class About extends CI_Controller {
     	//Data
         $data = $this->data;
         $banner_result = $this->Model_crud->select_where('banner',['deployment' => 'about']); 
+        $milestone = $this->Model_crud->select_where('milestone',['status' => 1]); 
         $content_result = $this->Model_crud->select_where('content_element',['placement' => 'about']);  
         $team_result = $this->Model_crud->select_where('our_team',['status' => 1]);     
         $video_result = $this->Model_crud->select_where('videos',['status' => 1]);       
@@ -43,6 +44,7 @@ class About extends CI_Controller {
         $data['video'] = $video_result[0];
         $data['team'] = $team_result;
         $data['banner'] = $banner_result[0];
+        $data['milestone'] = $milestone;
         $data['load_view'] = 'view_about';
         $this->load->view('template/front', $data);
     }

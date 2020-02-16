@@ -2,7 +2,7 @@
     <div class="page-header">
         <div class="container-fluid">
             <div class="pull-right">
-                <a href="<?php echo base_url('admin/member/add') ?>" data-toggle="tooltip" title="Add New" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                <!-- <a href="<?php echo base_url('admin/member/add') ?>" data-toggle="tooltip" title="Add New" class="btn btn-primary"><i class="fa fa-plus"></i></a> -->
                 <button type="button" data-toggle="tooltip" title="Delete" class="btn btn-danger" onclick="confirm('Are you sure?') ? $('#form-slideshow').submit() : false;"><i class="fa fa-trash-o"></i></button>
             </div>
             <h1>Member</h1>
@@ -76,7 +76,7 @@
                                             <td class="text-left"><?php echo $row['member_type'] ?></td>
                                             <td class="text-left"><?php echo $row['status'] == 1 ? 'enabled' : 'disabled' ?></td>
                                             <td class="text-left"><?php echo $row['added'] ?></td>
-                                            <td class="text-right"><a class="btn btn-primary" title="" data-toggle="tooltip" href="<?php echo base_url('admin/about/our_team/edit/' . $row['member_id']) ?>" data-original-title="Edit"><i class="fa fa-pencil"></i></a></td>
+                                            <td class="text-right"><a class="btn btn-primary" title="" data-toggle="tooltip" href="<?php echo base_url('admin/member/view/' . $row['member_id']) ?>" data-original-title="Edit"><i class="fa fa-pencil"></i></a></td>
                                         </tr>
 
                                         <?php

@@ -41,7 +41,7 @@
                                 <div id="container-upload-1" class="upload-holder">
                                     <?php if($result[0]['image'] != '') { ?>
                                         <div class="remove"><a href="javascript:void(0);" onclick="removeFile('upload-1');" class="thumbnail-close">&times;</a></div>
-                                        <figure><div><img src="<?php echo base_url('assets/images/slideshow/'.$result[0]['image']) ?>" alt=""></div></figure>
+                                        <figure><div><img src="<?php echo base_url('assets/images/team/'.$result[0]['image']) ?>" alt=""></div></figure>
                                         <input name="image" value="<?php echo $result[0]['image'] ?>" type="hidden">
                                     <?php } else { ?>
                                         <span>

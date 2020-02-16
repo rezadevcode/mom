@@ -1,6 +1,42 @@
 "use strict";
 
 $(document).ready(function () {
+  var Privileges = jQuery('#privileges');
+  var select = this.value;
+  Privileges.change(function () {
+    if ($(this).val() == 'custom') {
+      $('.resources').show();
+    } else $('.resources').hide(); // hide div if value is not "custom"
+
+  });
+  $('#option1').change(function () {
+    if ($(this).val() == 'komunitas_lain') {
+      $('.other-1').removeClass('d-none');
+    } else {
+      $('.other-1').addClass('d-none');
+    }
+  });
+  $('#option2').change(function () {
+    if ($(this).val() == 'komunitas_lain2') {
+      $('.other-2').removeClass('d-none');
+    } else {
+      $('.other-2').addClass('d-none');
+    }
+  });
+  $('#option3').change(function () {
+    if ($(this).val() == 'komunitas_lain3') {
+      $('.other-3').removeClass('d-none');
+    } else {
+      $('.other-3').addClass('d-none');
+    }
+  });
+  $('#option4').change(function () {
+    if ($(this).val() == 'komunitas_lain4') {
+      $('.other-4').removeClass('d-none');
+    } else {
+      $('.other-4').addClass('d-none');
+    }
+  });
   $('.multiple-items').slick({
     infinite: true,
     centerMode: true,

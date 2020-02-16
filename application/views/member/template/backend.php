@@ -10,7 +10,7 @@
         ?>
         <title><?php echo $web_title ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-        <link rel="shortcut icon" href="<?php echo base_url('assets/icon/'.$favicon); ?>" />
+        <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>" />
         <script type="text/javascript" src="<?php echo base_url('assets/admin/javascript/jquery/jquery-2.1.1.min.js'); ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('assets/admin/javascript/bootstrap/js/bootstrap.min.js') ?>"></script>
         <link href="<?php echo base_url('assets/admin/javascript/bootstrap/opencart/opencart.css') ?>" type="text/css" rel="stylesheet" />

@@ -11,7 +11,8 @@
 		}
 	?>
   <title><?php echo $web_title ?></title>
-  <link rel="apple-touch-icon" href="<?php echo base_url('assets/icon/apple-touch-icon.png') ?>">
+  <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>" />
+  <link rel="apple-touch-icon" href="<?php echo base_url('assets/images/favicon.ico') ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/styles/vendor.css') ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/styles/main.css') ?>">
   <script src="<?php echo base_url('assets/scripts/modernizr.js') ?>"></script>

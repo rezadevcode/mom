@@ -71,7 +71,7 @@ class Login_member extends CI_Controller {
                     //message
                     $json = array(
                         'status' => 'ok',
-                        'msg' => 'success login'
+                        'msg' => 'login success!'
                     );
                     header("Content-type:application/json");
                     echo json_encode($json,JSON_PRETTY_PRINT);
@@ -108,8 +108,12 @@ class Login_member extends CI_Controller {
         //validation
         $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[5]',
             array('required' => 'nama wajib di isi'));
+        $this->form_validation->set_rules('handphone', 'Handphone', 'trim|required|min_length[8]',
+        array('required' => 'handphone wajib di isi'));
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[member.email]',
         array('required' => 'email wajib di isi'));
+        $this->form_validation->set_rules('community', 'Kategori Komunitas', 'trim|required',
+        array('required' => 'Kategori Komunitas wajib di isi'));
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|matches[passconf]',
         array('matches' => 'password confirmation tidak cocok'));
         $this->form_validation->set_rules('passconf', 'Confirm Password', 'trim');
@@ -129,64 +133,108 @@ class Login_member extends CI_Controller {
             echo json_encode($json,JSON_PRETTY_PRINT);
         } else {
             $file_element_name = 'image';
-
-            // Config Upload
+            // Config Upload image
             $config['upload_path'] = './assets/tmp';
             $config['allowed_types'] = 'jpg|png|jpeg|JPG';
-            $config['max_size'] = 1024 * 40;
+            $config['max_size'] = '2048';
             $config['encrypt_name'] = FALSE;
             $config['file_name'] = time() . '_' . $_FILES[$file_element_name]['name'];
             $config['remove_spaces'] = TRUE;
+            $this->load->library('upload', $config,'imageupload'); // Create custom object for cover upload
+            $this->imageupload->initialize($config);
+            $upload_image = $this->imageupload->do_upload($file_element_name);
+            
+            //resume
+            if(!empty($_FILES['resume'])){
+                $file_element_name2 = 'resume';
+                $config['upload_path'] = './assets/cv';
+                $config['allowed_types'] = 'jpg|png|jpeg|JPG|pdf|doc';
+                $config['max_size'] = '2048';
+                $config['encrypt_name'] = FALSE;
+                $config['file_name'] = time() . '_' . $_FILES[$file_element_name2]['name'];
+                $config['remove_spaces'] = TRUE;
+                $this->load->library('upload', $config,'cvupload'); // Create custom object for cover upload
+                $this->cvupload->initialize($config);
+                $upload_cv = $this->cvupload->do_upload($file_element_name2);
+            }
 
-            $this->load->library('upload', $config);
+            if(!empty($_FILES['resume'])){
+                if(!$upload_cv){
+                    $message[] = $this->cvupload->display_errors();
+                }
+            }
 
-            if (!$this->upload->do_upload($file_element_name)) {
+            if (!$upload_image) {
+                $message[] = $this->imageupload->display_errors();
                 $json = array(
                     'status' => 'error',
-                    'msg' => $this->upload->display_errors()
+                    'msg' => $message
                 );
                 header("Content-type:application/json");
                 echo json_encode($json,JSON_PRETTY_PRINT);
             } else {
-                $data = $this->upload->data(); //data uploaf
+                $data = $this->imageupload->data(); //data uploa image      
+                if(!empty($_FILES['resume'])){
+                    $data2 = $this->cvupload->data(); //data uploa resume
+                }
 
                 $type = $this->input->post('type');
                 $name = $this->input->post('name');
+                $handphone = $this->input->post('handphone');
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $community = $this->input->post('community');
+                $community_other = $this->input->post('community_other');
                 $image = $data['file_name'];
+                $portfolio = $this->input->post('portfolio');
+                $ratecard = $this->input->post('ratecard');
                 $ig_account = $this->input->post('ig_account');
                 $fb_account = $this->input->post('fb_account');
+                $twitter = $this->input->post('twitter');
+                $website = $this->input->post('website');
+
+                if(!empty($community_other)) {
+                    $community = $community_other;
+                }
                 
                 $param = [
                     'name' => $name,
                     'email' => $email,
+                    'handphone' => $handphone,
                     'password' => crypt($password, $this->config->item('encryption_key')),
                     'comunity' => strtolower($community),
                     'name' => $name,
                     'image' => $image,
                     'status' => 1,
                     'member_type' => $type,
+                    'portfolio' => $portfolio,
+                    'ratecard' => $ratecard,
                     'ig_account' => $ig_account,
-                    'fb_account' => $fb_account
+                    'fb_account' => $fb_account,
+                    'twitter_account' => $twitter,
+                    'website' => $website
                 ];
+                if(!empty($_FILES['resume'])){
+                    $param['resume'] = $data2['file_name'];
+                }
 
+                // echo '<pre>';
+                // print_r($param);exit;
                 $query = $this->Model_crud->insert('member', $param);
 
                 if ($query > 0) {
-                    $data_member = [
-                        'name' => $name,
-                        'member_id' => $query,
-                        'email' => $email,
-                    ];
-                    $this->session->set_userdata('member_data', $data_member); //set session
-                    $this->session->set_userdata('member_logged_in', true); //set session
+                    // $data_member = [
+                    //     'name' => $name,
+                    //     'member_id' => $query,
+                    //     'email' => $email,
+                    // ];
+                    // $this->session->set_userdata('member_data', $data_member); //set session
+                    // $this->session->set_userdata('member_logged_in', true); //set session
 
                     @rename(FCPATH.'/assets/tmp/'.$image, FCPATH.'/assets/images/member/'.$image);
                     $json = array(
                         'status' => 'ok',
-                        'msg' => 'insert success',
+                        'msg' => 'registered successfully. please login!',
                         'result' => $query,
                     );
                 } else {

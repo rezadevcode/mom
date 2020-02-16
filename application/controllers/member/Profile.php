@@ -32,6 +32,7 @@ class Profile extends CI_Controller {
         //validation
         $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[5]', array('required' => 'nama wajib di isi'));
         $this->form_validation->set_rules('image', 'Image', 'trim|required', array('required' => 'Image wajib di isi'));
+        $this->form_validation->set_rules('handphone', 'Handphone', 'trim|required', array('required' => 'Handphone wajib di isi'));
 
         if ($this->form_validation->run() != FALSE) {
 
@@ -43,15 +44,25 @@ class Profile extends CI_Controller {
             $image = $this->input->post('image');
             $status = $this->input->post('status');
             $member_id = $data['data_member']['member_id'];
+            $twitter = $this->input->post('twitter');
+            $website = $this->input->post('website');
+            $portfolio = $this->input->post('portfolio');
+            $ratecard = $this->input->post('ratecard');
+            $handphone = $this->input->post('handphone');
 
             $data_update = array(
                 "name" => $name,
                 "ig_account" => $ig_account,
                 "fb_account" => $fb_account,
-                "comunity" => $comunity,
-                'member_type' => $type,            
+                "comunity" => strtolower($comunity),
+                // 'member_type' => $type,            
                 "image" => $image,
-                "status" => $status,
+                // "status" => $status,
+                "handphone" => $handphone,
+                "ratecard" => $ratecard,
+                "portfolio" => $portfolio,
+                "website" => $website,
+                "twitter_account" => $twitter,
                 "updated" => date('Y-m-d H:i:s')
             );
 
@@ -75,6 +86,8 @@ class Profile extends CI_Controller {
         if(!$profil) {
             show_404();
         }
+        // echo '<pre>';
+        //     print_r($profil);exit;
         $data['profil'] = $profil;
         $data['load_view'] = 'member/profile/profile_edit';
         $this->load->view('member/template/backend', $data);

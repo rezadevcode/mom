@@ -125,11 +125,11 @@
           <div class="bg-img"><img src="<?php echo base_url('assets/images/footer-banner.jpg') ?>" alt="" class="img-fluid w-100"></div>
           <div class="overlay text-center position-absolute w-100 h-100">
             <div class="tag wow fadeInUp">join with us</div>
-            <div class="title wow fadeInUp">Anda tertarik dengan kami? Gabung sekarang juga.</div>
-            <div class="menu-act my-4 ">
+            <div class="title wow fadeInUp">Ingin bergabung dengan <br> Mothers on Mission?</div>
+            <div class="menu-act my-4">
               <div class="d-flex justify-content-center">
-                <div class="column wow fadeInLeft"><a data-target="#registPopUp" data-toggle="modal" class="btn bg-white px-4">Register Here</a></div>
-                <div class="column wow fadeInRight"><a href="https://wa.me/6281381532383" class="btn bg-none px-4" target="_blank">Contact Us</a></div>
+              <div class="column wow fadeInLeft"><a data-target="#registPopUp" data-toggle="modal" class="btn bg-white px-4">Daftar Sekarang</a></div>
+              <div class="column wow fadeInRight d-none"><a href="https://wa.me/6281381532383" class="btn bg-none px-4" target="_blank">Contact Us</a></div>
               </div>
             </div>
           </div>
