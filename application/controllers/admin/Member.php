@@ -28,11 +28,28 @@ class Member extends CI_Controller {
     public function index() {
         //Data
         $data = $this->data;
+        $this->load->library('pagination');
+
+        $config['base_url'] = base_url('admin/member/page/');
+        $config['total_rows'] = 8;
+        $config['per_page'] = 2;
+
+        $this->pagination->initialize($config);
+
+        $data['results'] = $this->Model_crud->select_where('member', array('status'=>1));
+        $data['link'] = $this->pagination->create_links();
+        $data['load_view'] = 'admin/member/member_list';
+        $this->load->view('admin/template/backend', $data);
+    }
+
+    public function export() {
+        //Data
 
         $data['results'] = $this->Model_crud->select_where('member', array('status'=>1));
         
-        $data['load_view'] = 'admin/member/member_list';
-        $this->load->view('admin/template/backend', $data);
+        $data['title'] = 'data member';
+        // $data['load_view'] = 'admin/member/member_export';
+        $this->load->view('admin/member/member_export', $data);
     }
 
     public function add() {
@@ -109,6 +126,22 @@ class Member extends CI_Controller {
         }
 
         $data['load_view'] = 'admin/about/team/team_edit';
+        $this->load->view('admin/template/backend', $data);
+    }
+    public function view($id=0) {
+        //Data
+        $data = $this->data;
+
+        //Data User
+        $data['result'] = $this->Model_crud->select_where('member', array('member_id'=>$id));
+        
+        // echo '<pre>';
+        // print_r($data['result']);exit;
+        if(!$data['result']) {
+            show_404();
+        }
+
+        $data['load_view'] = 'admin/member/member_view';
         $this->load->view('admin/template/backend', $data);
     }
 

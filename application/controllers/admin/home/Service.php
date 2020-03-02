@@ -127,7 +127,7 @@ class Service extends CI_Controller {
             "status" => $status,
             "image" => $image,
             "link" => $link,
-            "updated" => date('Y-m-d H:i:s')
+            "update" => date('Y-m-d H:i:s')
         );
 
         // print_r($data_update);exit;

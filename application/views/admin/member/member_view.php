@@ -2,38 +2,29 @@
     <div class="page-header">
         <div class="container-fluid">
             <div class="pull-right">
-                <button class="btn btn-primary" title="" data-toggle="tooltip" form="form" type="submit" data-original-title="Save"><i class="fa fa-save"></i></button>
-                <a class="btn btn-default" title="" data-toggle="tooltip" href="<?php echo base_url('admin/home/slideshow') ?>" data-original-title="Cancel"><i class="fa fa-reply"></i></a></div>
-            <h1>Slideshow</h1>
+                <!-- <button class="btn btn-primary" title="" data-toggle="tooltip" form="form" type="submit" data-original-title="Save"><i class="fa fa-save"></i></button> -->
+                <a class="btn btn-default" title="" data-toggle="tooltip" href="<?php echo base_url('admin/member') ?>" data-original-title="Cancel"><i class="fa fa-reply"></i></a></div>
+            <h1>Member</h1>
             <ul class="breadcrumb">
                 <li><a href="<?php echo base_url('admin/dashboard') ?>">Home</a></li>
-                <li><a href="<?php echo base_url('admin/home/slideshow') ?>">Slideshow</a></li>
+                <li><a href="<?php echo base_url('admin/member') ?>">Member</a></li>
             </ul>
         </div>
     </div>
     <div class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Slideshow</h3>
+                <!-- <h3 class="panel-title"><i class="fa fa-pencil"></i> Add Member</h3> -->
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" id="form" enctype="multipart/form-data" method="post" action="<?php echo base_url('admin/about/our_team/update') ?>">
-                    <input type="hidden" name="id" value="<?php echo $result[0]['id'] ?>">
-
+                <form class="form-horizontal" id="form" enctype="multipart/form-data" method="post" action="<?php //echo base_url('admin/member/update') ?>">
+                <input name="member_id" type="hidden" value="<?php echo $result[0]['member_id'] ?>">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Title</label>
+                        <label class="col-sm-2 control-label">Join As</label>
                         <div class="col-sm-10">
-                            <input name="title" placeholder="Title" class="form-control" value="<?php echo $result[0]['title'] ?>">
+                            <input name="member_type" placeholder="Facebook" class="form-control" value="<?php echo $result[0]['member_type'] ?>">
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Position</label>
-                        <div class="col-sm-10">
-                            <input name="position" placeholder="Position" class="form-control" value="<?php echo $result[0]['position'] ?>">
-                        </div>
-                    </div>
-                    
                     <div class="form-group required <?php echo ($this->session->userdata('error_image')) ? 'has-error' : ''; ?>">
                         <label class="col-sm-2 control-label" for="input-image">Image</label>
                         <div class="col-sm-10">
@@ -41,7 +32,7 @@
                                 <div id="container-upload-1" class="upload-holder">
                                     <?php if($result[0]['image'] != '') { ?>
                                         <div class="remove"><a href="javascript:void(0);" onclick="removeFile('upload-1');" class="thumbnail-close">&times;</a></div>
-                                        <figure><div><img src="<?php echo base_url('assets/images/team/'.$result[0]['image']) ?>" alt=""></div></figure>
+                                        <figure><div><img src="<?php echo base_url('assets/images/member/'.$result[0]['image']) ?>" alt=""></div></figure>
                                         <input name="image" value="<?php echo $result[0]['image'] ?>" type="hidden">
                                     <?php } else { ?>
                                         <span>
@@ -57,30 +48,76 @@
                             <?php } ?>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Description</label>
+                        <label class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                            <textarea name="description" placeholder="Text Left" id="input-text-left" class="input-text-area">
-                            <?php echo $result[0]['desc'] ?>
-                            </textarea>
+                            <input name="name" placeholder="Name" class="form-control" value="<?php echo $result[0]['name'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Instagram</label>
+                        <label class="col-sm-2 control-label">Handphone</label>
                         <div class="col-sm-10">
-                            <input name="instagram" placeholder="Instagram" class="form-control" value="<?php echo $result[0]['ig_link'] ?>">
+                            <input name=handphone" placeholder="handphone" class="form-control" value="<?php echo $result[0]['handphone'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">WhatsApp</label>
+                        <label class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                            <input name="whatsapp" placeholder="WhatsApp" class="form-control" value="<?php echo $result[0]['wa_link'] ?>">
+                            <input name="email" placeholder="Email" class="form-control" value="<?php echo $result[0]['email'] ?>">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Instagram Account</label>
+                        <div class="col-sm-10">
+                            <input name="ig_account" placeholder="Instagram" class="form-control" value="<?php echo $result[0]['ig_account'] ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Facebook Account</label>
+                        <div class="col-sm-10">
+                            <input name="fb_account" placeholder="Facebook" class="form-control" value="<?php echo $result[0]['fb_account'] ?>">
+                        </div>
+                    </div>         
                     
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Twitter Account</label>
+                        <div class="col-sm-10">
+                            <input name="fb_account" placeholder="Twitter" class="form-control" value="<?php echo $result[0]['twitter_account'] ?>">
+                        </div>
+                    </div> 
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Category</label>
+                        <div class="col-sm-10">
+                            <input name="comunity" placeholder="Facebook" class="form-control" value="<?php echo $result[0]['comunity'] ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Portfolio</label>
+                        <div class="col-sm-10">
+                            <div class="form-control">
+                                <a href="<?php echo $result[0]['portfolio'] ?>" target="_blank">
+                                    <?php echo $result[0]['portfolio'] ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ratecard</label>
+                        <div class="col-sm-10">
+                            <input name="ratecard" placeholder="Ratecard" class="form-control" value="<?php echo $result[0]['ratecard'] ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Website</label>
+                        <div class="col-sm-10">
+                            <input name="website" placeholder="Website" class="form-control" value="<?php echo $result[0]['website'] ?>">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-status">Status</label>
                         <div class="col-sm-10">
@@ -88,6 +125,27 @@
                                 <option value="1" <?php echo ($result[0]['status']==1)? 'selected':'' ?> >Enabled</option>
                                 <option value="0" <?php echo ($result[0]['status']==0)? 'selected':'' ?> >Disabled</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Download CV</label>
+                        <div class="col-sm-10">
+                            <div class="form-control">
+                                <?php
+                                    if (isset($result[0]['resume'])) {
+                                        echo '<a href="'.base_url('assets/cv/'.$result[0]['resume']).'" target="_blank">
+                                                <i class="fa fa-file fa-fw"></i> &nbsp;
+                                                '.$result[0]['resume'].'
+                                            </a>';
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">Join Date</label>
+                        <div class="col-sm-10">
+                            <input name="ratecard" placeholder="Join Date" class="form-control" value="<?php echo $result[0]['added'] ?>">
                         </div>
                     </div>
                 </form>

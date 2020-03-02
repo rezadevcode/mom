@@ -7,7 +7,7 @@
             <h1>Profile</h1>
             <ul class="breadcrumb">
                 <li><a href="<?php echo base_url('member/dashboard') ?>">Home</a></li>
-                <li><a href="<?php echo base_url('member/member') ?>">Profile</a></li>
+                <li><a href="<?php echo base_url('member/profile') ?>">Profile</a></li>
             </ul>
         </div>
     </div>

@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="form-group">
                                             <select name="community" id="option1" class="form-control">
-                                                <option value="" selected hidden>Kategori Komunitas</option>
+                                                <option value="" selected hidden>Kategori MoM Freelancer</option>
                                                 <option value="Project Manager">Project Manager</option>
                                                 <option value="Social Media">Social Media</option>
                                                 <option value="Website Admin">Website Admin</option>
@@ -87,7 +87,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group d-none other-1">
-                                            <input type="text" class="form-control" placeholder="Komunitas Lainnya" name="community_other">
+                                            <input type="text" class="form-control" placeholder="Kategori Lainnya" name="community_other">
                                         </div>
                                         <div class="form-group custom-file">
                                             <input type="file" class="custom-file-input" id="customFile" name="image">
@@ -103,10 +103,10 @@
                                             <input type="text" class="form-control" placeholder="Link Portfolio" name="portfolio">
                                             <p class="small text-muted font-italic mb-0">(jika ada)</p>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Ratecard" name="ratecard">
                                             <p class="small text-muted font-italic mb-0">Kosongkan bila ingin mengikuti ratecard MoM</p>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="Password" name="password">
                                         </div>
@@ -146,7 +146,7 @@
                                         </div>
                                         <div class="form-group">
                                             <select name="community" id="option2" class="form-control">
-                                                <option value="" selected hidden>Kategori Komunitas</option>
+                                                <option value="" selected hidden>Kategori MoM Influencer</option>
                                                 <option value="Parenting">Parenting</option>
                                                 <option value="Beauty">Beauty</option>
                                                 <option value="Lifestyle">Lifestyle</option>
@@ -156,7 +156,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group d-none other-2">
-                                            <input type="text" class="form-control" placeholder="Komunitas Lainnya" name="community_other">
+                                            <input type="text" class="form-control" placeholder="Kategori Lainnya" name="community_other">
                                         </div>
                                         <div class="form-group custom-file mb-3">
                                             <input type="file" class="custom-file-input" id="customFile" name="image">
@@ -212,7 +212,7 @@
                                         </div>
                                         <div class="form-group">
                                             <select name="community" id="option3" class="form-control">
-                                                <option value="" selected hidden>Kategori Komunitas</option>
+                                                <option value="" selected hidden>Kategori MoM Preneur</option>
                                                 <option value="Parenting">Parenting</option>
                                                 <option value="Beauty">Beauty</option>
                                                 <option value="Lifestyle">Lifestyle</option>
@@ -222,17 +222,17 @@
                                             </select>
                                         </div>
                                         <div class="form-group d-none other-3">
-                                            <input type="text" class="form-control" placeholder="Komunitas Lainnya" name="community_other">
+                                            <input type="text" class="form-control" placeholder="Kategori Lainnya" name="community_other">
                                         </div>
                                         <div class="form-group custom-file mb-3">
                                             <input type="file" class="custom-file-input" id="customFile" name="image">
                                             <label class="custom-file-label" for="customFile">Upload Foto</label>
                                             <p class="small text-muted font-italic">Max. Upload 2mb</p>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Ratecard" name="ratecard">
                                             <p class="small text-muted font-italic mb-0">Kosongkan bila ingin mengikuti ratecard MoM</p>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="Password" name="password">
                                         </div>
@@ -277,25 +277,29 @@
                                             <p class="small text-muted font-italic mb-0">(jika ada)</p>
                                         </div>
                                         <div class="form-group">
-                                            <select name="community" id="option3" class="form-control">
-                                                <option value="" selected hidden>Kategori Komunitas</option>
+                                            <select name="community" id="option4" class="form-control">
+                                                <option value="" selected hidden>Kategori MoM Community</option>
                                                 <option value="Parenting">Parenting</option>
                                                 <option value="Beauty">Beauty</option>
                                                 <option value="Lifestyle">Lifestyle</option>
                                                 <option value="Traveling">Traveling</option>
                                                 <option value="Sport">Sport</option>
                                                 <option value="Kuliner">Kuliner</option>
-                                                <option value="komunitas_lain3">Lainnya</option>
+                                                <option value="komunitas_lain4">Lainnya</option>
                                             </select>
                                         </div>
-                                        <div class="form-group d-none other-3">
-                                            <input type="text" class="form-control" placeholder="Komunitas Lainnya" name="community_other">
+                                        <div class="form-group d-none other-4">
+                                            <input type="text" class="form-control" placeholder="Kategori Lainnya" name="community_other">
                                         </div>
                                         <div class="form-group custom-file mb-3">
                                             <input type="file" class="custom-file-input" id="customFile" name="image">
                                             <label class="custom-file-label" for="customFile">Upload Foto Komunitas</label>
                                             <p class="small text-muted font-italic">Max. Upload 2mb</p>
                                         </div>  
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Ratecard" name="ratecard">
+                                            <p class="small text-muted font-italic mb-0">Kosongkan bila ingin mengikuti ratecard MoM</p>
+                                        </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="Password" name="password">
                                         </div>

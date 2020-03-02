@@ -64,6 +64,7 @@ class Login_member extends CI_Controller {
                         'name' => $result[0]['name'],
                         'member_id' => $result[0]['member_id'],
                         'email' => $result[0]['email'],
+                        'category' => $result[0]['comunity'],
                     ];
                     $this->session->set_userdata('member_data', $data_member); //set session
                     $this->session->set_userdata('member_logged_in', true); //set session
@@ -98,12 +99,19 @@ class Login_member extends CI_Controller {
     }
 
     public function signup() {
+
+        $this->load->library('form_validation');
         // check if logged in
         if ($this->session->has_userdata('member_logged_in')) {
             redirect();
         }
+        
+        
+        if (!$this->input->post()) {
+            show_404();
+        }
+        
 		
-		$this->load->library('form_validation');
         
         //validation
         $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[5]',
@@ -113,7 +121,7 @@ class Login_member extends CI_Controller {
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[member.email]',
         array('required' => 'email wajib di isi'));
         $this->form_validation->set_rules('community', 'Kategori Komunitas', 'trim|required',
-        array('required' => 'Kategori Komunitas wajib di isi'));
+        array('required' => 'Kategori wajib di isi'));
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|matches[passconf]',
         array('matches' => 'password confirmation tidak cocok'));
         $this->form_validation->set_rules('passconf', 'Confirm Password', 'trim');

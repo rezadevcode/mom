@@ -26,9 +26,10 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> Service List</h3>
+                <h3 class="panel-title"><i class="fa fa-list"></i> Service List</h3>                
             </div>
             <div class="panel-body">
+            <a href="<?php echo base_url('admin/member/export'); ?>"><i class="fa fa-table"></i> Export to xls</a>
                 <form action="<?php echo base_url('admin/member/delete') ?>" method="post" enctype="multipart/form-data" id="form-slideshow">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
@@ -54,7 +55,7 @@
                                         Status
                                     </td>
                                     <td class="text-left">                    
-                                        Added
+                                        Join Date
                                     </td>
                                     <td class="text-right">Action</td>
                                 </tr>
@@ -76,7 +77,7 @@
                                             <td class="text-left"><?php echo $row['member_type'] ?></td>
                                             <td class="text-left"><?php echo $row['status'] == 1 ? 'enabled' : 'disabled' ?></td>
                                             <td class="text-left"><?php echo $row['added'] ?></td>
-                                            <td class="text-right"><a class="btn btn-primary" title="" data-toggle="tooltip" href="<?php echo base_url('admin/member/view/' . $row['member_id']) ?>" data-original-title="Edit"><i class="fa fa-pencil"></i></a></td>
+                                            <td class="text-right"><a class="btn btn-primary" title="" data-toggle="tooltip" href="<?php echo base_url('admin/member/view/' . $row['member_id']) ?>" data-original-title="View"><i class="fa fa-eye"></i></a></td>
                                         </tr>
 
                                         <?php
@@ -89,6 +90,7 @@
                                 ?>
                             </tbody>
                         </table>
+                        <?php echo $link; ?>
                     </div>
                 </form>
             </div>

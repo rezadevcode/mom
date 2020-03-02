@@ -34,13 +34,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Name</label>
-                        <div class="col-sm-10">
-                            <input name="name" placeholder="Name" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label class="col-sm-2 control-label">Instagram Account</label>
                         <div class="col-sm-10">
                             <input name="ig_account" placeholder="Instagram" class="form-control">
@@ -120,7 +113,7 @@
     </div>
 </div>
 
-<script type="text/javascript"><!--
+<script type="text/javascript">
     
     tinymce.init({
         selector: ".input-text-area", theme: "modern", height: 300,
