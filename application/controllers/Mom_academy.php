@@ -38,6 +38,7 @@ class Mom_academy extends CI_Controller {
         }
         // echo '<pre>';
         // print_r($data_content);exit;
+        $data['loginURL'] = $this->googleplus->loginURL();
         $data['content'] = $data_content;
         $data['program'] = $program_result;
         $data['banner'] = $banner_result[0];

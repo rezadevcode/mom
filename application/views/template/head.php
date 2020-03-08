@@ -15,6 +15,15 @@
   <link rel="apple-touch-icon" href="<?php echo base_url('assets/images/favicon.ico') ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/styles/vendor.css') ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/styles/main.css') ?>">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159862861-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159862861-1');
+  </script>
   <script src="<?php echo base_url('assets/scripts/modernizr.js') ?>"></script>
   <style>
     .notif-error p {

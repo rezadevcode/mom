@@ -262,6 +262,7 @@ class Login_member extends CI_Controller {
     public function logout() {
         // logout
         $this->session->sess_destroy();
+        $this->googleplus->revokeToken();
         redirect();
     }
 

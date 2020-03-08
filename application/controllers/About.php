@@ -40,6 +40,7 @@ class About extends CI_Controller {
         }
         // echo '<pre>';
         // print_r($video_result);exit;
+        $data['loginURL'] = $this->googleplus->loginURL();
         $data['content'] = $data_content;
         $data['video'] = $video_result[0];
         $data['team'] = $team_result;

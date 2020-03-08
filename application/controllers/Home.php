@@ -27,6 +27,47 @@ class Home extends CI_Controller {
 
     public function index() {
 
+        if(isset($_GET['code']))
+		{
+			$this->googleplus->getAuthenticate();
+			// echo '<pre>';
+            // print_r($this->googleplus->getUserInfo());exit;
+
+            $google = $this->googleplus->getUserInfo();
+            
+            $checkmail = $this->Model_crud->select_where('member',['email' => $google['email']]);
+            
+            if (sizeof($checkmail) == 0) {
+                $param = [
+                    'name' => $google['name'],
+                    'email' => $google['email'],
+                    // 'image' => $google['picture'],
+                    'status' => 1,
+                    'google_login' => 1
+                ];
+                
+                $query = $this->Model_crud->insert('member', $param);
+
+                $data_member = [
+                    'name' => $google['name'],
+                    'member_id' => $query,
+                    'email' => $google['email'],
+                    'category' => '',
+                ];
+            }else{
+                $data_member = [
+                    'name' => $checkmail[0]['name'],
+                    'member_id' => $checkmail[0]['member_id'],
+                    'email' => $checkmail[0]['email'],
+                    'category' => $checkmail[0]['comunity'],
+                ];
+            }
+        
+            $this->session->set_userdata('member_data', $data_member); //set session
+            $this->session->set_userdata('member_logged_in', true); //set session
+            
+            redirect();
+		}
     	//Data
         $data = $this->data;
 
@@ -42,6 +83,8 @@ class Home extends CI_Controller {
         }
         // echo '<pre>';
         // print_r($data_content);exit;
+		
+		$data['loginURL'] = $this->googleplus->loginURL();
         $data['content'] = $data_content;
         $data['sponsore'] = $sponsor_result;
         $data['slideshow'] = $slideshow_result;

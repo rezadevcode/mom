@@ -75,6 +75,7 @@ class Service_result extends CI_Controller {
         $count_service = !empty($service) ? count($service) : 0;
         $count_profile = $this->Model_crud->total_row_where('member', ['status' => 1]);
 
+        $data['loginURL'] = $this->googleplus->loginURL();
         $data['active'] = $keyword;
         $data['content'] = $service;
         $data['count_member'] = $count_profile;
@@ -103,6 +104,7 @@ class Service_result extends CI_Controller {
         }
         // echo '<pre>';
         // print_r($service);exit;
+        $data['loginURL'] = $this->googleplus->loginURL();
         $data['result'] = $service;
         $data['load_view'] = 'view_service_detail';
         $this->load->view('template/front', $data);

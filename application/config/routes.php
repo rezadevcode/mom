@@ -62,6 +62,7 @@ $route['member'] = 'member/Login_member';
 $route['home'] = 'home/index';
 // $route['project'] = 'project/index';
 // $route['client'] = 'client/index';
+$route['login_google_ci'] = 'login_google_ci/index';
 $route['about'] = 'about/index';
 $route['service'] = 'service/index';
 $route['mom-academy'] = 'mom_academy/index';

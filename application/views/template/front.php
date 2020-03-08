@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <!-- <a href="#" class="btn btn-submit text-uppercase d-block rounded bg-orange text-white">login</a> -->
                             <button class="btn btn-submit text-uppercase d-block rounded bg-orange text-white" style="width: 100%">login</button>
-                            <!-- <a href="#" class="btn btn-submit text-uppercase d-block rounded bg-orange text-white mt-3"><i class="fab fa-google"></i> login via google </a> -->
+                            <a href="<?php echo $loginURL; ?>" class="btn btn-submit text-uppercase d-block rounded bg-orange text-white mt-3"><i class="fab fa-google"></i> login via google </a>
                         </div>
                     </form>
                 </div>

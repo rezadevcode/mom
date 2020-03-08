@@ -31,12 +31,28 @@
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" id="form" enctype="multipart/form-data" method="post" action="<?php echo base_url('member/profile') ?>">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Join as</label>
-                        <div class="col-sm-10">
-                            <input name="name" placeholder="Name" class="form-control" value="<?php echo $profil[0]['member_type'] ?>">
+                    <?php 
+                        if (!empty($profil[0]['member_type'])) { ?>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Join as</label>
+                                <div class="col-sm-10">
+                                    <input placeholder="Name" class="form-control" value="<?php echo $profil[0]['member_type'] ?>" disabled>
+                                </div>
+                            </div>
+                    <?php }else{ ?>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-status">Join as</label>
+                            <div class="col-sm-10">
+                                <select name="join_as" id="input-status" class="form-control">                                    
+                                    <option value="">Select</option>
+                                    <option value="MoM_Freelancer">MoM_Freelancer</option>
+                                    <option value="MoM_Influencer">MoM_Influencer</option>
+                                    <option value="MoM_Preneur">MoM_Preneur</option>
+                                    <option value="MoM_Community">MoM_Community</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                        <?php } ?>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
@@ -150,7 +166,7 @@
                             </div>
                         </div>
                     
-                    <?php } else { ?>
+                    <?php } elseif ($profil[0]['member_type'] == 'MoM_Preneur') { ?>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-status">Kategori Komunitas</label>
                             <div class="col-sm-10">
@@ -163,18 +179,27 @@
                                 </select>
                             </div>
                         </div>
-                        <?php } ?>
-                    <!-- <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-status">Member Type</label>
-                        <div class="col-sm-10">
-                            <select name="type" id="input-status" class="form-control">
-                                <option value="" >Select</option>   
-                                <option value="freelancer" <?php echo ($profil[0]['member_type']== 'freelancer') ? 'selected':'' ?> >Freelancer</option>
-                                <option value="influencer" <?php echo ($profil[0]['member_type']== 'influencer') ? 'selected':'' ?> >Influencer</option>
-                                <option value="community" <?php echo ($profil[0]['member_type']== 'community') ? 'selected':'' ?> >Community</option>
-                            </select>
+                        <?php }else{ ?>
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-status">Kategori Komunitas</label>
+                            <div class="col-sm-10">
+                                <select name="comunity" id="input-status" class="form-control">  
+                                    <option value="">Select</option>         
+                                    <option value="Project Manager" <?php echo ($profil[0]['comunity']== 'project manager') ? 'selected':'' ?> >Project Manager</option>
+                                    <option value="Social Media" <?php echo ($profil[0]['comunity']== 'social media') ? 'selected':'' ?>>Social Media</option>
+                                    <option value="Website Admin" <?php echo ($profil[0]['comunity']== 'website admin') ? 'selected':'' ?>>Website Admin</option>
+                                    <option value="Strategist" <?php echo ($profil[0]['comunity']== 'strategist') ? 'selected':'' ?>>Strategist</option>
+                                    <option value="Designer" <?php echo ($profil[0]['comunity']== 'designer') ? 'selected':'' ?>>Designer</option>
+                                    <option value="Community Coordinator" <?php echo ($profil[0]['comunity']== 'community coordinator') ? 'selected':'' ?>>Community Coordinator</option>                        
+                                    <option value="parenting" <?php echo ($profil[0]['comunity']== 'parenting') ? 'selected':'' ?> >Parenting</option>
+                                    <option value="beauty" <?php echo ($profil[0]['comunity']== 'beauty') ? 'selected':'' ?> >Beauty</option>
+                                    <option value="lifestyle" <?php echo ($profil[0]['comunity']== 'lifestyle') ? 'selected':'' ?> >Lifestyle</option>
+                                    <option value="traveling" <?php echo ($profil[0]['comunity']== 'traveling') ? 'selected':'' ?> >Traveling</option>
+                                    <option value="kuliner" <?php echo ($profil[0]['comunity']== 'kuliner') ? 'selected':'' ?> >Kuliner</option>
+                                </select>
+                            </div>
                         </div>
-                    </div> -->
+                        <?php } ?>
 
                     <div class="form-group required <?php echo ($this->session->userdata('error_image')) ? 'has-error' : ''; ?>">
                         <label class="col-sm-2 control-label" for="input-image">Image</label>

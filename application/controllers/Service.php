@@ -35,6 +35,7 @@ class Service extends CI_Controller {
         }
         // echo '<pre>';
         // print_r($content_result);exit;
+        $data['loginURL'] = $this->googleplus->loginURL();
         $data['content'] = $data_content;
         $data['banner'] = $banner_result[0];
         $data['load_view'] = 'view_service';

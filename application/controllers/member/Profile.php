@@ -40,7 +40,7 @@ class Profile extends CI_Controller {
             $ig_account = $this->input->post('ig_account');
             $fb_account = $this->input->post('fb_account');
             $comunity = $this->input->post('comunity');
-            $type = $this->input->post('type');
+            $join_as = $this->input->post('join_as');
             $image = $this->input->post('image');
             $status = $this->input->post('status');
             $member_id = $data['data_member']['member_id'];
@@ -55,7 +55,7 @@ class Profile extends CI_Controller {
                 "ig_account" => $ig_account,
                 "fb_account" => $fb_account,
                 "comunity" => strtolower($comunity),
-                // 'member_type' => $type,            
+                'member_type' => $join_as,            
                 "image" => $image,
                 // "status" => $status,
                 "handphone" => $handphone,
