@@ -26,40 +26,60 @@ class Service extends CI_Controller {
             redirect();
         }
         $data = $this->data;
+        
+        $result = $this->Model_crud->select_query('SELECT a.*, b.`name` as member_name from service_member as a left join member as b on a.`member_id` = b.`member_id` where a.`member_id` ='.$data['data_member']['member_id'].' ORDER BY a.added desc');    
+        if(!empty($result)){
+            foreach ($result as $key => $value) {
+                $data_content = $this->Model_crud->select_where('member_service_img',['service_memberid' => $value['id']]);        
+                $result[$key]['image_service'] = $data_content;
+            }
+        }
+        // echo '<pre>';
+        // print_r($result);exit;
+        $data['results'] = $result;
+        $data['load_view'] = 'member/service/service_list';
+        $this->load->view('member/template/backend', $data);
+    }
+
+    public function add() {
+
+        if (!$this->session->has_userdata('member_logged_in')) {
+            redirect();
+        }
+        $data = $this->data;
 
         $this->load->library('form_validation');
         
         //validation
         $this->form_validation->set_rules('about', 'About', 'trim|required|min_length[5]', array('required' => 'About wajib di isi'));
-        // $this->form_validation->set_rules('description', 'Description', 'trim|required', array('required' => 'Image wajib di isi'));
-        // $this->form_validation->set_rules('handphone', 'Handphone', 'trim|required', array('required' => 'Handphone wajib di isi'));
+        $this->form_validation->set_rules('description', 'Description', 'trim|required', array('required' => 'description wajib di isi'));
+        $this->form_validation->set_rules('price', 'Price', 'trim|required', array('required' => 'Price wajib di isi'));
 
         if ($this->form_validation->run() != FALSE) {
-            // echo '<pre>';
-            // print_r($this->input->post());exit;
-
-            $this->Model_crud->delete('service_member',['member_id' => $data['data_member']['member_id']]);
-            $this->Model_crud->delete('member_service_img',['member_id' => $data['data_member']['member_id']]);
 
             $about = $this->input->post('about');
             $description = $this->input->post('description');
             $price = $this->input->post('price');
             $image = $this->input->post('image');
+            $member_serviceid = hexdec(uniqid());
 
             $data_update = array(
+                "id" => $member_serviceid,
                 "member_id" => $data['data_member']['member_id'],
                 "category" => $data['data_member']['category'],
                 "about" => $about,
                 "desc" => $description,
                 "price" => $price,
+                "status" => 1,
                 "added" => date('Y-m-d H:i:s'),
                 "updated" => date('Y-m-d H:i:s'),
             );
+            // print_r($data_update);exit;
             $slideshow_id = $this->Model_crud->insert('service_member', $data_update);
 
             foreach($image as $row){
                 $data_insert[] = [
-                    "member_id" => $data['data_member']['member_id'],
+                    "service_memberid" => $member_serviceid,
                     'image' => $row,
                     "added" => date('Y-m-d H:i:s'),
                     "updated" => date('Y-m-d H:i:s')
@@ -80,69 +100,95 @@ class Service extends CI_Controller {
         }
 
         //Data User
-        $result = $this->Model_crud->select_where('member_service_img', array('member_id'=>$data['data_member']['member_id']));
-        $result2 = $this->Model_crud->select_where('service_member', array('member_id'=>$data['data_member']['member_id']));
+        // $result = $this->Model_crud->select_where('member_service_img', array('member_id'=>$data['data_member']['member_id']));
+        // $result2 = $this->Model_crud->select_query('SELECT a.*, b.* from service_member as a left join member as b on a.`member_id` = b.`member_id` where a.`member_id` ='.$data['data_member']['member_id']);
         // if(!$result) {
         //     show_404();
         // }
         // echo '<pre>';
-        // print_r($data['data_member']);exit;
-        $data['result'] = $result;
-        $data['service'] = $result2;
-        $data['load_view'] = 'member/service/service_edit';
+        // print_r($result2);exit;
+        // $data['result'] = $result;
+        // $data['service'] = $result2;
+        $data['load_view'] = 'member/service/service_add';
         $this->load->view('member/template/backend', $data);
     }
-    public function edit_password()
-    {
+
+    public function edit($id) {
+
+        // $id = $this->uri->segment(4);
         if (!$this->session->has_userdata('member_logged_in')) {
             redirect();
         }
-        //Data User
         $data = $this->data;
 
         $this->load->library('form_validation');
-
-        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|matches[passconf]',
-        array('matches' => 'password confirmation tidak cocok'));
-        $this->form_validation->set_rules('passconf', 'Confirm Password', 'trim');
         
+        //validation
+        $this->form_validation->set_rules('about', 'About', 'trim|required|min_length[5]', array('required' => 'About wajib di isi'));
+        $this->form_validation->set_rules('description', 'Description', 'trim|required', array('required' => 'description wajib di isi'));
+        $this->form_validation->set_rules('price', 'Price', 'trim|required', array('required' => 'Price wajib di isi'));
+
         if ($this->form_validation->run() != FALSE) {
 
-            $old_password = $this->input->post('old_password');
-            $password = $this->input->post('password');
-            $member_id = $data['data_member']['member_id'];
+            $about = $this->input->post('about');
+            $description = $this->input->post('description');
+            $price = $this->input->post('price');
+            $image = $this->input->post('image');
+            $status = $this->input->post('status');
 
-            $get_member = $this->Model_crud->select_where('member',['member_id' => $member_id]);
-
-            $old_password = crypt($old_password, $this->config->item('encryption_key'));
-            $get_password = $get_member[0]['password'];
-            
-            if($get_password == $old_password){ // check old password 
-                
-                $password = crypt($password, $this->config->item('encryption_key'));
-
-                $data_update = array(
-                    "password" => $password,
-                    "updated" => date('Y-m-d H:i:s')
-                );
-
-                // echo '<pre>';
-                // print_r($data_update);exit;
-                $slideshow_id = $this->Model_crud->update('member', $data_update, array("member_id"=>$member_id));
-                
-                if ($slideshow_id) {
-                    $this->session->set_userdata('slideshow_success', 'Success: You have modified profile!');
-                } else {
-                    $this->session->set_userdata('slideshow_error', 'Error: Please try again!');
-                }
-
-                redirect('member/profile/edit_password');
-            }else{
-                $this->session->set_userdata('error_password', 'Error: invalid old Password!');
+            $check = $this->Model_crud->select_where('service_member', ['id' => $id, 'member_id' => $data['data_member']['member_id']]);
+            if (sizeof($check) == 0) {
+                $this->session->set_userdata('slideshow_error', 'Error: invalid service id!');
+                redirect('member/service');
             }
+            $data_update = array(
+                "member_id" => $data['data_member']['member_id'],
+                "category" => $data['data_member']['category'],
+                "about" => $about,
+                "desc" => $description,
+                "price" => $price,
+                "status" => $status,
+                "updated" => date('Y-m-d H:i:s'),
+            );
+            // print_r($id);exit;
+            $slideshow_id = $this->Model_crud->update('service_member', $data_update,['id' => $id]);
+
+            $this->Model_crud->delete('member_service_img',['service_memberid' => $id]); // delete image
+
+            foreach($image as $row){
+                $data_insert[] = [
+                    "service_memberid" => $id,
+                    'image' => $row,
+                    "added" => date('Y-m-d H:i:s'),
+                    "updated" => date('Y-m-d H:i:s')
+                ];
+
+                @rename(FCPATH.'/assets/tmp/'.$row, FCPATH.'/assets/images/member_service/'.$row);
+            }
+
+            $slideshow_id = $this->Model_crud->insert_batch('member_service_img', $data_insert);
+            
+            if ($slideshow_id) {
+                $this->session->set_userdata('slideshow_success', 'Success: You have modified profile!');
+            } else {
+                $this->session->set_userdata('slideshow_error', 'Error: Please try again!');
+            }
+
+            redirect('member/service');
         }
 
-        $data['load_view'] = 'member/profile/profile_password';
+        //Data User
+        $service = $this->Model_crud->select_query('SELECT a.*, b.`name` from service_member as a left join member as b on a.`member_id` = b.`member_id` where( a.`member_id` ='.$data['data_member']['member_id'].' AND a.`id`='.$id.')');
+        
+        foreach ($service as $key => $value) {
+            $data_content = $this->Model_crud->select_where('member_service_img',['service_memberid' => $value['id']]);        
+            $service[$key]['image_service'] = $data_content;
+        }
+
+        // echo '<pre>';
+        // print_r($service);exit;
+        $data['service'] = $service;
+        $data['load_view'] = 'member/service/service_edit';
         $this->load->view('member/template/backend', $data);
     }
 }

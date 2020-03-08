@@ -161,6 +161,12 @@ class Model_crud extends CI_Model {
         }
     }
 
+    //ambil data mahasiswa dari database
+    public function list_limit($table,$limit, $start){
+        $query = $this->db->get($table, $limit, $start);
+        return $query;
+    }
+
     public function sort_no_order($table, $offset, $dataPerPage) {
         $query = $this->db->query("SELECT * FROM $table LIMIT $offset, $dataPerPage");
         if ($query->num_rows() > 0) {

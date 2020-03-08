@@ -29,14 +29,12 @@ class Service extends CI_Controller {
     	//Data
         $data = $this->data;
         $banner_result = $this->Model_crud->select_where('banner',['deployment' => 'service']);        
-        $content_result = $this->Model_crud->select_where('content_element',['placement' => 'service']);
-        $data_content = [];
-        
+        $content_result = $this->Model_crud->select_where('content_element',['placement' => 'service']);    
         foreach ($content_result as $value) {
             $data_content[$value['id']] = $value;
         }
         // echo '<pre>';
-        // print_r($data_content);exit;
+        // print_r($content_result);exit;
         $data['content'] = $data_content;
         $data['banner'] = $banner_result[0];
         $data['load_view'] = 'view_service';

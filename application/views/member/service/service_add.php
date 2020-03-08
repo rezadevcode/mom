@@ -30,7 +30,7 @@
                 <h3 class="panel-title"><i class="fa fa-pencil"></i> Service</h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" id="form" enctype="multipart/form-data" method="post">
+                <form class="form-horizontal" id="form" enctype="multipart/form-data" method="post" action="<?php echo base_url('member/service/add') ?>">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">About</label>
                         <div class="col-sm-10">
@@ -52,25 +52,15 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-status">Status</label>
-                        <div class="col-sm-10">
-                            <select name="status" id="input-status" class="form-control">
-                                <option value="1" <?php echo ($service[0]['status'] == '1') ? 'selected':'' ?> >Enabled</option>
-                                <option value="0" <?php echo ($service[0]['status'] == '0') ? 'selected':'' ?> >Disabled</option>
-                            </select>
-                        </div>
-                    </div>
-
                     <div class="form-group required <?php echo ($this->session->userdata('error_image')) ? 'has-error' : ''; ?>">
                         <label class="col-sm-2 control-label" for="input-image">Image</label>
                         <div class="col-sm-10">
                             <div style="display: inline-block; margin-right: 50px">
                                 <div id="container-upload-1" class="upload-holder">
-                                    <?php if(isset($service[0]['image_service'][0]['image'])) { ?>
+                                    <?php if(isset($result[0]['image'])) { ?>
                                         <div class="remove"><a href="javascript:void(0);" onclick="removeFile('upload-1');" class="thumbnail-close">&times;</a></div>
-                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$service[0]['image_service'][0]['image']) ?>" alt=""></div></figure>
-                                        <input name="image[]" value="<?php echo $service[0]['image_service'][0]['image'] ?>" type="hidden">
+                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$result[0]['image']) ?>" alt=""></div></figure>
+                                        <input name="image[]" value="<?php echo $result[0]['image'] ?>" type="hidden">
                                     <?php } else { ?>
                                         <span>
                                             <input id="upload-1" name="image[]" onchange="ajaxFileUpload(this.id)" type="file">
@@ -78,10 +68,10 @@
                                     <?php } ?>
                                 </div>
                                 <div id="container-upload-2" class="upload-holder">
-                                    <?php if(isset($service[0]['image_service'][1]['image'])) { ?>
+                                    <?php if(isset($result[1]['image'])) { ?>
                                         <div class="remove"><a href="javascript:void(0);" onclick="removeFile('upload-2');" class="thumbnail-close">&times;</a></div>
-                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$service[0]['image_service'][1]['image']) ?>" alt=""></div></figure>
-                                        <input name="image[]" value="<?php echo $service[0]['image_service'][1]['image'] ?>" type="hidden">
+                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$result[1]['image']) ?>" alt=""></div></figure>
+                                        <input name="image[]" value="<?php echo $result[1]['image'] ?>" type="hidden">
                                     <?php } else { ?>
                                         <span>
                                             <input id="upload-2" name="image[]" onchange="ajaxFileUpload(this.id)" type="file">
@@ -89,10 +79,10 @@
                                     <?php } ?>
                                 </div>
                                 <div id="container-upload-3" class="upload-holder">
-                                    <?php if(isset($service[0]['image_service'][2]['image'])) { ?>
+                                    <?php if(isset($result[2]['image'])) { ?>
                                         <div class="remove"><a href="javascript:void(0);" onclick="removeFile('upload-3');" class="thumbnail-close">&times;</a></div>
-                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$service[0]['image_service'][2]['image']) ?>" alt=""></div></figure>
-                                        <input name="image[]" value="<?php echo $service[0]['image_service'][2]['image'] ?>" type="hidden">
+                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$result[2]['image']) ?>" alt=""></div></figure>
+                                        <input name="image[]" value="<?php echo $result[2]['image'] ?>" type="hidden">
                                     <?php } else { ?>
                                         <span>
                                             <input id="upload-3" name="image[]" onchange="ajaxFileUpload(this.id)" type="file">
@@ -100,10 +90,10 @@
                                     <?php } ?>
                                 </div>
                                 <div id="container-upload-4" class="upload-holder">
-                                    <?php if(isset($service[0]['image_service'][3]['image'])) { ?>
+                                    <?php if(isset($result[3]['image'])) { ?>
                                         <div class="remove"><a href="javascript:void(0);" onclick="removeFile('upload-4');" class="thumbnail-close">&times;</a></div>
-                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$service[0]['image_service'][3]['image']) ?>" alt=""></div></figure>
-                                        <input name="image[]" value="<?php echo $service[0]['image_service'][3]['image'] ?>" type="hidden">
+                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$result[3]['image']) ?>" alt=""></div></figure>
+                                        <input name="image[]" value="<?php echo $result[3]['image'] ?>" type="hidden">
                                     <?php } else { ?>
                                         <span>
                                             <input id="upload-4" name="image[]" onchange="ajaxFileUpload(this.id)" type="file">
@@ -111,10 +101,10 @@
                                     <?php } ?>
                                 </div>
                                 <div id="container-upload-5" class="upload-holder">
-                                    <?php if(isset($service[0]['image_service'][4]['image'])) { ?>
+                                    <?php if(isset($result[4]['image'])) { ?>
                                         <div class="remove"><a href="javascript:void(0);" onclick="removeFile('upload-5');" class="thumbnail-close">&times;</a></div>
-                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$service[0]['image_service'][4]['image']) ?>" alt=""></div></figure>
-                                        <input name="image[]" value="<?php echo $service[0]['image_service'][4]['image'] ?>" type="hidden">
+                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$result[4]['image']) ?>" alt=""></div></figure>
+                                        <input name="image[]" value="<?php echo $result[4]['image'] ?>" type="hidden">
                                     <?php } else { ?>
                                         <span>
                                             <input id="upload-5" name="image[]" onchange="ajaxFileUpload(this.id)" type="file">
@@ -122,10 +112,10 @@
                                     <?php } ?>
                                 </div>
                                 <div id="container-upload-6" class="upload-holder">
-                                    <?php if(isset($service[0]['image_service'][5]['image'])) { ?>
+                                    <?php if(isset($result[5]['image'])) { ?>
                                         <div class="remove"><a href="javascript:void(0);" onclick="removeFile('upload-6');" class="thumbnail-close">&times;</a></div>
-                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$service[0]['image_service'][5]['image']) ?>" alt=""></div></figure>
-                                        <input name="image[]" value="<?php echo $service[0]['image_service'][5]['image'] ?>" type="hidden">
+                                        <figure><div><img src="<?php echo base_url('assets/images/member_service/'.$result[5]['image']) ?>" alt=""></div></figure>
+                                        <input name="image[]" value="<?php echo $result[5]['image'] ?>" type="hidden">
                                     <?php } else { ?>
                                         <span>
                                             <input id="upload-6" name="image[]" onchange="ajaxFileUpload(this.id)" type="file">
