@@ -12,11 +12,10 @@
                 <li><a href="<?php echo base_url('member/profile/edit_password') ?>">Update Password</a></li>
             </ul>
         </li>
-        <li id="member"><a class="parent"><i class="fa fa-file fa-fw"></i> <span>Service</span></a>
+        <!-- <li id="member"><a class="parent"><i class="fa fa-file fa-fw"></i> <span>Service</span></a>
             <ul>
                 <li><a href="<?php echo base_url('member/service') ?>">Service list</a></li>
-                <!-- <li><a href="<?php echo base_url('member/profile/edit_password') ?>">Update Password</a></li> -->
             </ul>
-        </li>
+        </li> -->
     </ul>
 </nav>

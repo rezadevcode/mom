@@ -49,30 +49,31 @@
 	<div class="home-service-wrapper py-5">
 		<div class="container">
 		<div class="title-section text-center text-capitalize">our services</div>            
-		<div class="column-list my-5">
-			<div class="row">
-				<?php 
-					foreach ($service as $row) {
-						echo '<div class="columns col-md-4 col-12 wow fadeInUp mb-5" data-wow-duration="2s" data-wow-delay="0.4s">
-						<div class="block p-5 mb-3 hvr-float-shadow h-100">
-						<a href="'.$row['link'].'" target="_blank" class="position-relative h-100">
-							<div class="row mb-3">
-							<div class="icon col-md-3"><img src="assets/images/content/'.$row['image'].'" alt="" class="img-fluid"></div>
-							<div class="name col-md-9 d-flex align-items-center">'.$row['title'].'</div>
+			<div class="column-list my-5">
+				<div class="row">
+					<?php 
+						foreach ($service as $row) {
+							echo '<div class="columns col-md-4 col-12 wow fadeInUp mb-5" data-wow-duration="2s" data-wow-delay="0.4s">
+							<div class="block p-5 mb-3 hvr-float-shadow h-100">
+							<a href="'.$row['link'].'" target="_blank" class="position-relative h-100">
+								<div class="row mb-3">
+								<div class="icon col-md-3"><img src="assets/images/content/'.$row['image'].'" alt="" class="img-fluid"></div>
+								<div class="name col-md-9 d-flex align-items-center">'.$row['title'].'</div>
+								</div>
+								<div class="short-desc">
+								'.$row['desc'].'
+								</div>
+								<div class="button position-absolute w-100">
+								<button class="btn text-white w-100 text-uppercase">Hubungi Kami</button>
+								</div>
+							</a>
 							</div>
-							<div class="short-desc">
-							'.$row['desc'].'
-							</div>
-							<div class="button position-absolute w-100">
-							<button class="btn text-white w-100 text-uppercase">Hubungi Kami</button>
-							</div>
-						</a>
-						</div>
-					</div>';
-					}
-				?>
+						</div>';
+						}
+					?>
+				</div>
 			</div>
-		</div>
+			<div class="d-flex align-items-center justify-content-center"><a href="<?php echo base_url('service-result') ?>" class="hvr-float-shadow bg-orange px-3 py-2 btn text-white text-uppercase">Explore</a></div>
 		</div>
 	</div>
 	<div class="home-academy-wrapper py-5">

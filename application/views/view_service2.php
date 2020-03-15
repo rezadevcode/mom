@@ -55,7 +55,7 @@
                                                     echo (!empty($row['image_service'])) ? '<img src="'.base_url('assets/images/member_service/'.$row['image_service'][0]['image']).'" alt="" class="img-fluid">' : '<img src="'.base_url('assets/images/no_image.jpg').'" alt="" class="img-fluid">';
                                                 echo '</div>
                                                 <div class="after-img border p-3">
-                                                    <div class="name">'.$row['member_name'].'</div>
+                                                    <div class="name">'.word_limiter($row['name'],2).'</div>
                                                     <div class="job">'.$row['category'].'</div>
                                                     <div class="price">Rp. '.number_format($row['price'],0,'.','.').',-</div>
                                                 </div>

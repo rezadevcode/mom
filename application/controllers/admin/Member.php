@@ -32,7 +32,7 @@ class Member extends CI_Controller {
 
         $config['base_url'] = base_url('admin/member/page');
         $config['total_rows'] = $this->Model_crud->total_row('member');
-        $config['per_page'] = 5 ;
+        $config['per_page'] = 20 ;
         $config["uri_segment"] = 3;  // uri parameter
         $choice = $config["total_rows"] / $config["per_page"];
         $config["num_links"] = floor($choice);
@@ -74,7 +74,7 @@ class Member extends CI_Controller {
 
         $config['base_url'] = base_url('admin/member/page');
         $config['total_rows'] = $this->Model_crud->total_row('member');
-        $config['per_page'] = 5;
+        $config['per_page'] = 20 ;
         $config["uri_segment"] = 4;  // uri parameter
         $choice = $config["total_rows"] / $config["per_page"];
         $config["num_links"] = floor($choice);

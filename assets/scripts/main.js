@@ -54,6 +54,8 @@ $(document).ready(function () {
     slidesToScroll: 1,
     arrows: true,
     fade: true,
+    prevArrow: '<div class=\'prev\'><i class=\'fas fa-angle-left\'></i></div>',
+    nextArrow: '<div class=\'next\'><i class=\'fas fa-angle-right\'></i></div>',
     asNavFor: '.slider-nav'
   });
   $('.slider-nav').slick({

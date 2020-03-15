@@ -5,7 +5,16 @@
 				<div class="column-left-wrapper col-md-4 col-12">
 					<div class="column-left border rounded p-4">
 						<div class="profile-wrapper text-center">
-						<div class="img mb-3"><img src="<?php echo base_url('assets/images/member/'.$result[0]['member_img']) ?>" alt="" class="img-fluid"></div>
+						<?php 
+							if (!empty($result[0]['member_img'])) {
+								echo '<div class="img mb-3"><img src="'. base_url('assets/images/member/'.$result[0]['member_img']).'" alt="" class="img-fluid"></div>';
+							}else if(!empty($result[0]['image_service'])){
+								echo '<div class="img mb-3"><img src="'. base_url('assets/images/member_service/'.$result[0]['image_service'][0]['image']).'" alt="" class="img-fluid"></div>';
+							}else{
+								echo '<div class="img mb-3"><img src="'. base_url('assets/images/no-image.png').'" alt="" class="img-fluid" width="200"></div>';
+							}
+						?>
+						
 						<div class="nama mb-2"><?php echo $result[0]['name'] ?></div>
 						<div class="bio mb-4"><?php echo $result[0]['category'] ?></div>
 						</div>

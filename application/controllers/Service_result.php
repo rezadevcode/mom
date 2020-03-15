@@ -93,7 +93,7 @@ class Service_result extends CI_Controller {
         }
         
         //Data User
-        $service = $this->Model_crud->select_query('SELECT a.*, b.`name`, b.`image` as member_img, b.`comunity` from service_member as a left join member as b on a.`member_id` = b.`member_id` where a.`id`='.$id);
+        $service = $this->Model_crud->select_query('SELECT a.*, b.`name`, b.`image` as member_img, b.`comunity` from service_member as a left join member as b on a.`member_id` = b.`member_id` where( a.`id`='.$id.' and a.`status` = 1)');
         
         if(empty($service)){
             show_404();
